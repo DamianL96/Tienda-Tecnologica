@@ -47,4 +47,8 @@ public class Televisor extends ProductoInformatico{
                 "\nSmart: " + smart +
                 "\nTipo de pantalla: " + tipoPantalla;
     }
+
+    public String toStringCatalogo() {
+        return super.toStringCatalogo();
+    }
 }

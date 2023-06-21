@@ -72,4 +72,7 @@ public class Computadora extends ProductoInformatico{
                 "\nLector de CD: " + lectorCd +
                 "\nTipo de computadora: " + tipoPc;
     }
+    public String toStringCatalogo() {
+        return super.toStringCatalogo();
+    }
 }

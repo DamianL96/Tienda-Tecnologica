@@ -11,7 +11,7 @@ import java.util.*;
 
 public class GestoraDeProductos implements Serializable{
 
-    //private ArrayList<Producto> productosTipo
+
     private HashMap<TipoProducto, ArrayList<Producto>> productos;
 
 
@@ -36,7 +36,7 @@ public class GestoraDeProductos implements Serializable{
             ArrayList<Producto> aux = (ArrayList<Producto>) mapa.getValue();
             for(Producto p : aux)
             {
-                info += "\n" + p.toString();
+                info += "\n" + p.toStringCatalogo();
             }
         }
         return info;
@@ -46,11 +46,13 @@ public class GestoraDeProductos implements Serializable{
      * Muestra todos los productos de un mismo tipo que recibe por parametro ej. todos los CELULARES
      * @return String
      */
-    public String infoProductosDeCiertoTipo(TipoProducto t)
+    public String infoProductosDeCiertoTipo(TipoProducto tipoProducto)
     {
         String info = "";
-        for(Producto p : productos.get(t)){
-            info += "\n" + p.toString();
+        System.out.println(tipoProducto);
+        ArrayList<Producto> aux=  productos.get(tipoProducto); //
+        for(Producto p : aux){
+            info += "\n" + p.toStringCatalogo();
         }
         return info;
     }

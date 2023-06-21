@@ -1,5 +1,6 @@
 package ModelsInterfazGrafica;
 
+import ModelsEnum.TipoProducto;
 import ModelsEnum.TipoUsuario;
 import ModelsExcepcion.MiExcepcionContraseniaIncorrecta;
 import ModelsExcepcion.MiExcepcionNombreDeUsuario;
@@ -51,7 +52,7 @@ public class Sistema
     }
 
 
-    public int cicloMenuPrincipal() {  //menu donde se dara las 3 opciones principales crear usuario - iniciar seccion - ver catalogo
+    public void cicloMenuPrincipal() {  //menu donde se dara las 3 opciones principales crear usuario - iniciar seccion - ver catalogo
         cargaSistema();
 
         do{
@@ -92,18 +93,16 @@ public class Sistema
 
                 case 3:
                     //Catalogo
-                    opcion= cicloMuestraCatalogo();
+                    cicloMuestraCatalogo();
                     break;
             }
         }while (opcion != 9);
         guardaSistema();
-
-        return opcion;
     }
 
 
 
-    public int cicloMuestraCatalogo(){
+    public void cicloMuestraCatalogo(){
         Menu.muestraCatalogo();
         do{
             opcion = teclado.nextInt();
@@ -111,31 +110,29 @@ public class Sistema
             switch (opcion) {
                 case 1:
                     //catalogo completo
-                    System.out.println("Catalogo completo");
-                    opcion= cicloOpcionesDeCatalogo();
+                    System.out.println(gestoraDeProductos.infoProductos());
+                    cicloOpcionesDeCatalogo();
                     break;
 
                 case 2:
-                    System.out.println("Catalogo Celulares");
-                    opcion= cicloOpcionesDeCatalogo();
+                    System.out.println(gestoraDeProductos.infoProductosDeCiertoTipo(TipoProducto.CELULAR));
+                    cicloOpcionesDeCatalogo();
                     //celulares
                     break;
 
                 case 3:
                     //Smart TV's
-                    System.out.println("Catalogo Smart tvs");
-                    opcion= cicloOpcionesDeCatalogo();
+                    System.out.println(gestoraDeProductos.infoProductosDeCiertoTipo(TipoProducto.TELEVISOR));
+                    cicloOpcionesDeCatalogo();
                     break;
 
                 case 4:
                     //Computadoras
-                    System.out.println("Catalogo computadoras");
-                    opcion= cicloOpcionesDeCatalogo();
+                    System.out.println(gestoraDeProductos.infoProductosDeCiertoTipo(TipoProducto.COMPUTADORA));
+                    cicloOpcionesDeCatalogo();
                     break;
             }
         }while (opcion != 9);
-
-        return opcion;
     }
 
 
@@ -175,11 +172,10 @@ public class Sistema
         return opcion;
     }
 
-    public int cicloOpcionesDeCatalogo(){
+    public void cicloOpcionesDeCatalogo(){
         Menu.opcionesCatalogo();
         do{
             opcion = teclado.nextInt();
-
 
             switch (opcion) {
                 case 1://ver producto
@@ -191,7 +187,7 @@ public class Sistema
                     break;
             }
         }while (opcion != 9);
-        return opcion;
+
     }
 
 

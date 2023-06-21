@@ -107,4 +107,9 @@ public abstract class ProductoInformatico extends Producto
                 "\nSistema operativo " + sistemOperativo;
 
     }
+    public String toStringCatalogo() {
+        return super.toStringCatalogo();
+    }
+
+
 }

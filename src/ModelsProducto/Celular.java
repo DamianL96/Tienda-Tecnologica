@@ -54,4 +54,7 @@ public class Celular extends ProductoInformatico{
                 "\nCantidad de camaras: " + cantCamaras +
                 "\nCamara Delantera: " + camaraDelantera;
     }
+    public String toStringCatalogo() {
+        return super.toStringCatalogo();
+    }
 }

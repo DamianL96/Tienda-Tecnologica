@@ -180,11 +180,19 @@ public abstract class Producto implements Serializable
         return "\nMarca: " + marca +
                 "\nModelo " + modelo +
                 "\nPrecio: " + precio +
-                "\nCantidad disponible: " + stock +
-                "\nDescripcion: "+ descripcion +
-                "\nID: " + id;
+                //"\nCantidad disponible: " + stock +
+                "\nDescripcion: "+ descripcion ;
+                //"\nID: " + id;
 
                /* ", comentariosProducto=" + comentariosProducto +
                  */
     }
+
+
+    public String toStringCatalogo() {
+        return "\nMarca: " + marca +
+                "\nModelo " + modelo +
+                "\nPrecio: " + precio;
+    }
+
 }
