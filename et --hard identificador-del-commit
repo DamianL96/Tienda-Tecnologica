@@ -1,0 +1,166 @@
+[33mcommit 24aab78f2290720ba686a009c0745d0df9219536[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Marcos Corasaniti <marcoscorasaniti@gmail.com>
+Date:   Wed Jun 21 11:19:29 2023 -0300
+
+    Reviso cosas
+
+[33mcommit 0d065fda6200956cbbf5f6a71e197bd7deeb235a[m
+Merge: 9c8fe61 ce78c02
+Author: valennramirez <valennramirez22@gmail.com>
+Date:   Tue Jun 20 21:08:50 2023 -0300
+
+    guardar archivo en usuario -valen
+
+[33mcommit 9c8fe61a151caad3ca4a9fe33b9981c2694ab36e[m
+Author: valennramirez <valennramirez22@gmail.com>
+Date:   Tue Jun 20 19:39:17 2023 -0300
+
+    valen
+
+[33mcommit ce78c020deffecdf64551a496b1ad3f6a7082de3[m
+Merge: 01aa2a7 ea73c43
+Author: Marcos Corasaniti <marcoscorasaniti@gmail.com>
+Date:   Tue Jun 20 19:33:47 2023 -0300
+
+    marcos - valen
+
+[33mcommit 01aa2a79fca842b0c1a63667c9b089ef310f998f[m
+Merge: 11c27fe de859d7
+Author: Marcos Corasaniti <marcoscorasaniti@gmail.com>
+Date:   Tue Jun 20 19:32:47 2023 -0300
+
+    controladora - gestora
+
+[33mcommit ea73c43037ea68e936e5db58b1bb187dff65e220[m
+Author: valennramirez <valennramirez22@gmail.com>
+Date:   Tue Jun 20 19:09:23 2023 -0300
+
+    modifique las excepciones (cree dos nuevas) y tambien registrarse e iniciar sesion- valen
+
+[33mcommit 11c27feb3c045b6a0687e3a71b0098fbf9fb1ff3[m
+Author: Marcos Corasaniti <marcoscorasaniti@gmail.com>
+Date:   Tue Jun 20 18:46:04 2023 -0300
+
+    Prueba
+
+[33mcommit de859d783963e756d42fd079ff496a14d48cd7e5[m
+Author: DamianL96 <damianlambrecht@gmail.com>
+Date:   Mon Jun 19 00:55:12 2023 -0300
+
+    Modificacion de clase Sistema-Menu y agregado de cargar/guardar a GestoraProductos que tengo que seguir acomodando
+
+[33mcommit ed42b613733824ecbde594d336b4a12d78cec433[m
+Author: valennramirez <valennramirez22@gmail.com>
+Date:   Sun Jun 18 19:00:44 2023 -0300
+
+    hice registrar, iniciar sesion y agregue excepciones -valen
+
+[33mcommit 94131b2db8ffa9fc567bac86d1cf1498a6967ce9[m
+Author: MarcosNotebook <maagustin51@gmail.com>
+Date:   Sat Jun 17 11:12:39 2023 -0300
+
+    creo clase generica para guardar en archivo
+
+[33mcommit a8b326235b186291965e24a72c97e4c1cc7df9e8[m
+Author: MarcosNotebook <maagustin51@gmail.com>
+Date:   Thu Jun 15 09:47:55 2023 -0300
+
+    alguna funcion del menu
+
+[33mcommit 7fde419f69cf616b92c1e222d9fec7cb94cb5b4f[m
+Author: Marcos Corasaniti <marcoscorasaniti@gmail.com>
+Date:   Wed Jun 14 18:28:50 2023 -0300
+
+    clase de munu y sistema
+
+[33mcommit e3520b94e46d498d1f951a6dd4b5f531cd5ec532[m
+Author: Marcos Corasaniti <marcoscorasaniti@gmail.com>
+Date:   Tue Jun 13 23:16:08 2023 -0300
+
+    funcion de gestora de producto
+
+[33mcommit 6de59e2d09fd4764cf5b4e9104cbec6d6962f655[m
+Author: valennramirez <valennramirez22@gmail.com>
+Date:   Tue Jun 13 10:12:04 2023 -0300
+
+    comente las funciones y modifique algunas de usuario y gestora de usuarios -valen
+
+[33mcommit db091061f53804ad4f5a405684438fab0a66fa21[m
+Author: Marcos Corasaniti <marcoscorasaniti@gmail.com>
+Date:   Mon Jun 12 21:08:38 2023 -0300
+
+    funcion de incrementar stock - marcos
+
+[33mcommit b1693168ce235cd9111da7bd22c43173aded9b0e[m
+Author: Marcos Corasaniti <marcoscorasaniti@gmail.com>
+Date:   Sun Jun 11 20:41:28 2023 -0300
+
+    Funcion de agregar producto nuevo al HasMap Probada con id - marcos
+
+[33mcommit 4f494fb4025fcc2428bc01c5a2d11d64f27bda88[m
+Author: valennramirez <valennramirez22@gmail.com>
+Date:   Sun Jun 11 12:44:47 2023 -0300
+
+    modifique verificacion contraseña y user -valen
+
+[33mcommit 240f483747d9e92174d9fda76a46dc951bdfd46b[m
+Merge: ad1f707 d05f2da
+Author: Marcos Corasaniti <marcoscorasaniti@gmail.com>
+Date:   Sat Jun 10 23:37:31 2023 -0300
+
+    Arreglo de los paquetes, algo de gestora de producto - marcos
+
+[33mcommit ad1f707cfcfe3ccf0a6e2aa1a51c383e25482184[m
+Author: Marcos Corasaniti <marcoscorasaniti@gmail.com>
+Date:   Sat Jun 10 23:34:43 2023 -0300
+
+    Arreglo de los paquetes, algo de gestora de producto - marcos
+
+[33mcommit d05f2da2cb92c5a7380a2acdeceef618541c8b05[m
+Author: valennramirez <valennramirez22@gmail.com>
+Date:   Sat Jun 10 23:25:31 2023 -0300
+
+    funciones en gestora de usuarios, ver carrito y ver historial en Usuario - valen
+
+[33mcommit 18db4c30134a0facb3f29461d799665d18abfc9c[m
+Merge: 4bc94a9 2a25733
+Author: MarcosNotebook <maagustin51@gmail.com>
+Date:   Fri Jun 9 12:23:14 2023 -0300
+
+    trabajado en clase valen-marcos
+
+[33mcommit 4bc94a9ed0a8ba73584e26302fe94fc051b9b93f[m
+Author: MarcosNotebook <maagustin51@gmail.com>
+Date:   Fri Jun 9 12:19:51 2023 -0300
+
+    creacion de clases producto - marcos
+
+[33mcommit 2a25733fc6ee3a558d738995951053a6d18a7897[m
+Author: valennramirez <valennramirez22@gmail.com>
+Date:   Fri Jun 9 12:14:59 2023 -0300
+
+    verificar contraseña y usuario -valen
+
+[33mcommit 6076012842e1f7a4a30d531bb0de3238dee4bc7a[m
+Author: ValenCompuFacu <valennramirez22@gmail.com>
+Date:   Fri Jun 9 10:28:47 2023 -0300
+
+    trabajo en clase gestora - valen
+
+[33mcommit a73e206e2594f830488be145cc1f219a9b665805[m
+Author: MarcosNotebook <maagustin51@gmail.com>
+Date:   Fri Jun 9 09:05:05 2023 -0300
+
+    Agrego clase comentarios - Marcos
+
+[33mcommit bfe9efe13da153e5251d04965e96244f65dbdcff[m
+Author: MarcosNotebook <maagustin51@gmail.com>
+Date:   Thu Jun 8 20:44:56 2023 -0300
+
+    v5
+
+[33mcommit 04edf0a575e017f349cfde84f8b6364b9136d3e1[m
+Author: MarcosNotebook <maagustin51@gmail.com>
+Date:   Thu Jun 8 18:23:21 2023 -0300
+
+    Inicio de proyeto, creado de algunas clases. Marcos
