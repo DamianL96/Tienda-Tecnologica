@@ -37,17 +37,6 @@ public class Sistema
         this.opcion = -1;
     }
 
-/**
-    public void cicloPrograma()
-    {
-
-        do{
-            opcion = cicloMenuPrincipal();
-        }while (opcion!=0);
-
-    }
-*/
-
     public void cargaSistema()
     {
         gestoraDeUsuarios.leeArchivo();
@@ -75,32 +64,12 @@ public class Sistema
 
         do{
             Menu.muestraMenuPrincipal();
-
             opcion = teclado.nextInt();
 
             switch (opcion) {
                 case 1:
                     //inicio de sesion
-                    try {
-                        usuario = iniciarSesion();
-                        boolean admin = verificaTipoUsuario(usuario);
-                        if(admin == true)
-                        {
-                            cicloOpcionesAdministrador();
-                        }
-                        else
-                        {
-                            cicloOpcionesUsuario();
-                        }
-                    }
-                    catch (MiExcepcionNombreDeUsuario ex)
-                    {
-                        System.out.println(ex.getMessage());
-                    }
-                    catch (Exception ex)
-                    {
-                        System.out.println(ex.getMessage());
-                    }
+                    cicloIniciarSesion();
                     break;
 
                 case 2:
@@ -115,6 +84,29 @@ public class Sistema
             }
         }while (opcion != 0);
         guardaSistema();
+    }
+
+    public void cicloIniciarSesion(){
+        try {
+            usuario = iniciarSesion();
+            boolean admin = verificaTipoUsuario(usuario);
+            if(admin == true)
+            {
+                cicloOpcionesAdministrador();
+            }
+            else
+            {
+                cicloOpcionesUsuario();
+            }
+        }
+        catch (MiExcepcionNombreDeUsuario ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
 
 
@@ -188,11 +180,13 @@ public class Sistema
                 switch (opcion)
                 {
                     case 1://agregar al carrito
+                        cicloIniciarSesion();
                         usuario.agregarProductoAlCarrito(producto);
                         cicloVerCarrito(2);
                         break;
 
                     case 2://compra
+                        cicloIniciarSesion();
                         factura=cicloComprar(usuario.getMiCarrito());
                         System.out.println(factura.toString());
                         cicloMuestraCatalogo();
@@ -258,6 +252,7 @@ public class Sistema
 
                 case 2:
                     //gestionar inventario
+                    cicloGestionarInventario();
                     break;
                 case 3:
                     //ver facturas
@@ -278,6 +273,55 @@ public class Sistema
 
     }
 
+    public void cicloGestionarInventario(){
+
+        Producto producto= cicloBuscarProducto();
+        if(producto == null)
+        {
+            System.out.println("Producto no encontrado.");
+            cicloOpcionesAdministrador();
+        }else
+        {
+            Menu.menuStock();
+            do
+            {
+                switch (opcion)
+                {
+                    case 1://agregar Stock
+                        producto.agregarStock(cicloAgregarStock());
+                        cicloOpcionesAdministrador();
+                        break;
+
+                    case 2://quitar Stock
+                        producto.quitarStock(cicloQuitarStock());
+                        cicloOpcionesAdministrador();
+                        break;
+
+                    case 3://moificar precio
+                        producto.setPrecio(cicloModificarPrecio());
+                        cicloOpcionesAdministrador();
+                        break;
+
+                    case 9:
+                        cicloOpcionesAdministrador();
+                        break;
+                }
+            }while (opcion != 0);
+        }
+
+    }
+    public int cicloAgregarStock(){
+        System.out.println("Cantidad a agregar:");
+        return teclado.nextInt();
+    }
+    public int cicloQuitarStock(){
+        System.out.println("Cantidad a quitar:");
+        return teclado.nextInt();
+    }
+    public double cicloModificarPrecio(){
+        System.out.println("Nuevo Precio:");
+        return teclado.nextDouble();
+    }
     public void cicloOpcionesUsuario () {
         Menu.muestraOpcionesUsuario();
 

@@ -25,7 +25,7 @@ public class Main {
         gestoraU.agregarUsuario(usuario);
         gestoraU.guardarArchivo();
 
-
+*/
         Producto celular = new Celular(TipoProducto.CELULAR, "11", "Iphone", 150000, 5, null, 0, 0, 6.1, "FULL HD", "Cable de carga", "m1", 2, "IOS 15", 128, "Camara principal de 12mpx y un gran angulas de 8 mpx", 2, "1 sensor de 8 mpx");
         Producto compu = new Computadora(TipoProducto.COMPUTADORA, "ThinkPad", "Lenovo", 450000, 2, null, 2, 0, 15.6, "FULL HD", "Cargador", "Intel I5", 8, "Windows 10", 256, "720p", "5 horas carga maxima", true, TipoPc.NETBOOK);
         Producto tele = new Televisor(TipoProducto.TELEVISOR, "50AU7000", "Samsung", 147000, 80, null, 1, 0, 52, "4k 120fps", "Control remoto", "no se", 2, "samsun smart", 2, true, TipoPantalla.LED);
@@ -40,7 +40,7 @@ public class Main {
         gestoraP.agregar(celular1.getTipoProducto(), celular1);
         gestoraP.agregar(compu1.getTipoProducto(), compu1);
         gestoraP.agregar(tele1.getTipoProducto(), tele1);
-        gestoraP.guardarArchivo();*/
+        gestoraP.guardarArchivo();
 
         Sistema sistema = new Sistema();
         //sistema.cicloMenuPrincipal();

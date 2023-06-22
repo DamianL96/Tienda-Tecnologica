@@ -127,6 +127,12 @@ public abstract class Producto implements Serializable
     }
 
 
+    public void agregarStock(int agregado){
+        stock +=agregado;
+    }
+    public void quitarStock(int quitado){
+        stock -= quitado;
+    }
     public void incrementrarStock()
     {
         stock++;

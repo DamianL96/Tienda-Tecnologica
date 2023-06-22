@@ -84,5 +84,12 @@ public class Menu
         System.out.println("9- "+TipoOpciones.VOLVER.getNombre());
     }
 
+    public static void menuStock(){
+        System.out.println("GESTION INVENTARIO -- Ingrese el numero de la opcion que desee");
+        System.out.println("1- "+TipoOpciones.AGREGARSTOCK.getNombre());
+        System.out.println("2- "+TipoOpciones.QUITARSTOCK.getNombre());
+        System.out.println("3- "+TipoOpciones.MODIFICARPRECIO.getNombre());
+        System.out.println("9- "+TipoOpciones.VOLVER.getNombre());
+    }
 
 }
