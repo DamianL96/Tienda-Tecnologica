@@ -60,9 +60,18 @@ public class Sistema
         gestoraDeProductos.guardarArchivo();
     }
 
+    public void cicloPrograma()
+    {
+        cargaSistema();
+        do{
+
+            cicloMenuPrincipal();
+        }while (opcion!=0);
+
+    }
 
     public void cicloMenuPrincipal() {  //menu donde se dara las 3 opciones principales crear usuario - iniciar seccion - ver catalogo
-        cargaSistema();
+
 
         do{
             Menu.muestraMenuPrincipal();
@@ -109,7 +118,6 @@ public class Sistema
     }
 
 
-
     public void cicloMuestraCatalogo(){
         Menu.muestraCatalogo();
         do{
@@ -149,13 +157,14 @@ public class Sistema
 
     public Producto cicloBuscarProducto()
     {
+        teclado.nextLine();
         System.out.println("\n Ingresar MARCA del producto:");
         String marca= teclado.nextLine();
-        teclado.next();
 
         System.out.println("\n Ingresar MODELO del producto:");
         String modelo= teclado.nextLine();
-        teclado.next();
+        teclado.nextLine();
+
         return gestoraDeProductos.buscaProductoColeccion(marca,modelo);
     }
 

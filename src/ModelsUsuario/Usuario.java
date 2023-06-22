@@ -21,6 +21,10 @@ public class Usuario extends Persona{
     private ArrayList <Producto> historialDeCompra;
     public static int ultimoId;
 
+
+
+
+
     public Usuario()
     {
         super();

@@ -36,8 +36,7 @@ public class GestoraDeProductos implements Serializable{
             ArrayList<Producto> aux = (ArrayList<Producto>) mapa.getValue();
             for(Producto p : aux)
             {
-                //info += "\n" + p.toStringCatalogo();
-                info += "\n" + p.toString();
+                info += "\n" + p.toStringCatalogo();
             }
         }
         return info;
@@ -72,8 +71,10 @@ public class GestoraDeProductos implements Serializable{
         while (it.hasNext()) {
             Map.Entry mapa = (Map.Entry) it.next();
             ArrayList<Producto> aux = (ArrayList<Producto>) mapa.getValue();
-            for (Producto p : aux) {
-                if (p.buscaProducto(modelo, marca)) {
+            for (Producto p : aux)
+            {
+                if (p.buscaProducto(modelo, marca))
+                {
                   encontrado = p;
                 }
             }
