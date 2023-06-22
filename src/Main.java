@@ -2,6 +2,7 @@ import ModelsEnum.TipoPantalla;
 import ModelsEnum.TipoPc;
 import ModelsEnum.TipoProducto;
 import ModelsEnum.TipoUsuario;
+import ModelsGestoras.GestoraDeFacturas;
 import ModelsGestoras.GestoraDeProductos;
 import ModelsGestoras.GestoraDeUsuarios;
 import ModelsInterfazGrafica.Sistema;
@@ -15,7 +16,8 @@ public class Main {
     public static void main(String[] args)
     {
 
-
+        GestoraDeFacturas facturas= new GestoraDeFacturas();
+        
 
        /* Producto celular = new Celular(TipoProducto.CELULAR, "11", "Iphone", 150000, 5, null, 0, 0, 6.1, "FULL HD", "Cable de carga", "m1", 2, "IOS 15", 128, "Camara principal de 12mpx y un gran angulas de 8 mpx", 2, "1 sensor de 8 mpx");
         Producto compu = new Computadora(TipoProducto.COMPUTADORA, "ThinkPad", "Lenovo", 450000, 2, null, 2, 0, 15.6, "FULL HD", "Cargador", "Intel I5", 8, "Windows 10", 256, "720p", "5 horas carga maxima", true, TipoPc.Notebook);
@@ -32,8 +34,8 @@ public class Main {
         gestoraDeProductos.agregar(compu.getTipoProducto(), compu1);
         gestoraDeProductos.agregar(tele.getTipoProducto(), tele1);
         gestoraDeProductos.guardarArchivo();*/
-        Sistema sistema = new Sistema();
-        sistema.cicloMenuPrincipal();
+        //Sistema sistema = new Sistema();
+        //sistema.cicloMenuPrincipal();
         /*Usuario usuario = new Usuario("admin", "administrador", "7600", "elAdmin123", "administrador@gmail.com", "admin123", TipoUsuario.ADMINISTRADOR);
         usuario.setCodigoAdmin("holajava");
         GestoraDeUsuarios gestora = new GestoraDeUsuarios();
