@@ -44,6 +44,11 @@ public abstract class Producto implements Serializable
         this.id = id;
     }
 
+    public Producto (TipoProducto tipoProducto, String marca, String modelo, double precio)
+    {
+
+    }
+
     public TipoProducto getTipoProducto() {
         return tipoProducto;
     }

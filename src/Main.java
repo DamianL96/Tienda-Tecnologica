@@ -13,18 +13,32 @@ import ModelsProducto.Producto;
 import ModelsProducto.Televisor;
 import ModelsUsuario.Usuario;
 
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args)
     {
 
 
         Sistema sistema = new Sistema();
-        sistema.cicloMenuPrincipal();
+        //sistema.cicloMenuPrincipal();
 
 
+        Producto celular = new Celular(TipoProducto.CELULAR, "11", "Iphone", 150000, 5, null, 0, 0, 6.1, "FULL HD", "Cable de carga", "m1", 2, "IOS 15", 128, "Camara principal de 12mpx y un gran angulas de 8 mpx", 2, "1 sensor de 8 mpx");
+        Producto celular1 = new Celular(TipoProducto.CELULAR, "10", "Iphone", 150000, 5, null, 0, 0, 6.1, "FULL HD", "Cable de carga", "m1", 2, "IOS 15", 128, "Camara principal de 12mpx y un gran angulas de 8 mpx", 2, "1 sensor de 8 mpx");
+        Producto celular2 = new Celular(TipoProducto.CELULAR, "13", "Iphone", 150000, 5, null, 0, 0, 6.1, "FULL HD", "Cable de carga", "m1", 2, "IOS 15", 128, "Camara principal de 12mpx y un gran angulas de 8 mpx", 2, "1 sensor de 8 mpx");
+        Producto celular3= new Celular(TipoProducto.CELULAR, "12", "Iphone", 150000, 5, null, 0, 0, 6.1, "FULL HD", "Cable de carga", "m1", 2, "IOS 15", 128, "Camara principal de 12mpx y un gran angulas de 8 mpx", 2, "1 sensor de 8 mpx");
 
 
+        ArrayList <Producto> productos=new ArrayList<>();
 
+        productos.add(celular);
+        productos.add(celular1);
+        productos.add(celular2);
+        productos.add(celular3);
+
+        Factura factura=new Factura(productos, "ramirez", "valen", "bfjer", "efectivo", 200000);
+        System.out.println(factura.toString());
         /**GestoraDeUsuarios gestora = new GestoraDeUsuarios();
         gestora.leeArchivo();
         System.out.println(gestora.infoUsuarios());*/

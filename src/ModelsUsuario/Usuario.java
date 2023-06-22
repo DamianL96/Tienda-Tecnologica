@@ -106,16 +106,7 @@ public class Usuario extends Persona{
     }
 
 
-    /** Metodo que visualiza el carrito del usuario
-     *
-     */
-    public void verCarrito()
-    {
-        for(Producto p: miCarrito)
-        {
-            p.toString();
-        }
-    }
+
 
     /**Metodo que visualiza el historial del usuario
      *

@@ -4,9 +4,9 @@ import ModelsEnum.TipoPantalla;
 import ModelsEnum.TipoPc;
 import ModelsEnum.TipoProducto;
 import ModelsEnum.TipoUsuario;
-import ModelsExcepcion.MiExcepcionContraseniaIncorrecta;
-import ModelsExcepcion.MiExcepcionNombreDeUsuario;
-import ModelsExcepcion.MiExcepcionUsuarioRepetido;
+import ModelsExcepcion.*;
+import ModelsFactura.Factura;
+import ModelsGestoras.GestoraDeFacturas;
 import ModelsGestoras.GestoraDeProductos;
 import ModelsGestoras.GestoraDeUsuarios;
 import ModelsProducto.Celular;
@@ -15,12 +15,14 @@ import ModelsProducto.Producto;
 import ModelsProducto.Televisor;
 import ModelsUsuario.Usuario;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Sistema
 {
     private GestoraDeUsuarios gestoraDeUsuarios;
     private GestoraDeProductos gestoraDeProductos;
+    private GestoraDeFacturas gestoraDeFacturas;
     private Scanner teclado;
     private Usuario usuario;
     private int opcion;
@@ -30,6 +32,7 @@ public class Sistema
         this.teclado = new Scanner(System.in);
         this.gestoraDeUsuarios= new GestoraDeUsuarios();
         this.gestoraDeProductos= new GestoraDeProductos();
+        this.gestoraDeFacturas= new GestoraDeFacturas();
         this.usuario = new Usuario();
         this.opcion = -1;
     }
@@ -154,7 +157,7 @@ public class Sistema
                     break;
 
                 case 2://compra
-                    cicloComprar();
+                    //cicloComprar();
                     break;
                 case 3://comentario
                     cicloComentario();
@@ -237,7 +240,9 @@ public class Sistema
 
                 case 2:
                     //Carrito
-                    cicloVerCarrito();
+
+
+                    //cicloVerCarrito();
                     break;
 
                 case 3:
@@ -264,7 +269,22 @@ public class Sistema
 
             switch (opcion){
                 case 1:
-                    cicloComprar();
+
+                    /*int seguirComprando=0;
+                    ArrayList<Producto> productosAComprar= new ArrayList<>();
+
+                    do {
+                        System.out.println("Ingrese el producto que desee comprar: ");
+                        int opcionProducto= teclado.nextInt();
+
+                        Producto producto= usuario.getMiCarrito().get(opcionProducto-1); //-1 porque el carrito va a mostrar desde la posicion 1, pero el array empieza en la 0
+                        productosAComprar.add(producto);
+                        System.out.println("Desea seguir comprando? 1-Si 2-No ");
+                        seguirComprando = teclado.nextInt();
+
+                    } while (seguirComprando==1);
+                    cicloComprar(productosAComprar);*/
+
                     break;
 
                 case 2:
@@ -281,13 +301,23 @@ public class Sistema
     }
 
 
-    public int cicloComprar(){
+    public int cicloComprar(ArrayList<Producto> productosAComprar){
         Menu.opcionesCompra();
         do {
             opcion= teclado.nextInt();
             switch (opcion){
                 case 1:
                     System.out.println("Efectivo-Tarjeta-Transfencia");
+                    String metodoDePago=teclado.next();
+                    Factura factura;
+                    try
+                    {
+                        factura=comprarProducto(productosAComprar, metodoDePago);
+
+                    } catch (MiExcepcionStockInsuficiente ex)
+                    {
+                        System.out.println(ex.getMessage());
+                    }
                     break;
                 case 9:
                     break;
@@ -436,8 +466,7 @@ public class Sistema
     }
 
 
-    public Producto cargaUnProducto(TipoProducto tipo)
-    {
+    public Producto cargaUnProducto(TipoProducto tipo) {
         Producto productoNuevo = null;
 
         System.out.println("Ingrese la marca:");
@@ -447,10 +476,10 @@ public class Sistema
         String modelo = teclado.next();
 
         System.out.println("Ingrese el precio:");
-        double precio= teclado.nextDouble();
+        double precio = teclado.nextDouble();
 
         System.out.println("Ingrese el stock:");
-        int stock= teclado.nextInt();
+        int stock = teclado.nextInt();
 
         teclado.next();
 
@@ -460,7 +489,7 @@ public class Sistema
         teclado.next();
 
         System.out.println("Ingrese el tamaño de la pantalla:");
-        double tamaneoPantalla= teclado.nextDouble();
+        double tamaneoPantalla = teclado.nextDouble();
 
         teclado.next();
 
@@ -476,7 +505,7 @@ public class Sistema
         teclado.next();
 
         System.out.println("Ingrese la ram:");
-        int ram= teclado.nextInt();
+        int ram = teclado.nextInt();
 
         teclado.next();
 
@@ -486,10 +515,9 @@ public class Sistema
         teclado.next();
 
         System.out.println("Ingrese el almacenamiento:");
-        int almacenamiento= teclado.nextInt();
+        int almacenamiento = teclado.nextInt();
 
-        if(tipo == TipoProducto.CELULAR)
-        {
+        if (tipo == TipoProducto.CELULAR) {
             teclado.next();
             System.out.println("Ingrese detalles de la/s camaras traseras:");
             String camaraTrasera = teclado.next();
@@ -497,28 +525,25 @@ public class Sistema
             teclado.next();
 
             System.out.println("Ingrese la cantidad de camaras:");
-            int cantCamaras= teclado.nextInt();
+            int cantCamaras = teclado.nextInt();
 
             System.out.println("Ingrese detalle de la camara frontal:");
             String camaraFrontal = teclado.next();
 
             productoNuevo = new Celular(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento, camaraTrasera, cantCamaras, camaraFrontal);
 
-        } else if (tipo == TipoProducto.TELEVISOR)
-        {
+        } else if (tipo == TipoProducto.TELEVISOR) {
             System.out.println("Es samart (Ingrese SI o NO):");
             String op = teclado.next();
             boolean smart = false;
-            if(op.equalsIgnoreCase("si"))
-            {
+            if (op.equalsIgnoreCase("si")) {
                 smart = true;
             }
             System.out.println("Ingrese el numero de la opcion:\n");
             System.out.println("1) LED - 2)LCD - 3)AMOLED - 4)OLED");
             int opcion = teclado.nextInt();
             TipoPantalla tipoPantalla = null;
-            switch (opcion)
-            {
+            switch (opcion) {
 
                 case 1:
                     tipoPantalla = TipoPantalla.LED;
@@ -535,8 +560,7 @@ public class Sistema
             }
             productoNuevo = new Televisor(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento, smart, tipoPantalla);
 
-        } else if (tipo == TipoProducto.COMPUTADORA)
-        {
+        } else if (tipo == TipoProducto.COMPUTADORA) {
             System.out.println("Ingrese detalle de la webCam:");
             String webCam = teclado.next();
             System.out.println("Ingrese detalle de la bateria:");
@@ -544,8 +568,7 @@ public class Sistema
             System.out.println("Tiene lector(Ingrese SI o NO):");
             String op = teclado.next();
             boolean lector = false;
-            if(op.equalsIgnoreCase("si"))
-            {
+            if (op.equalsIgnoreCase("si")) {
                 lector = true;
             }
             teclado.next();
@@ -553,8 +576,7 @@ public class Sistema
             System.out.println("1) PCDEESCRITORIO - 2)NOTEBOOK - 3)NETBOOK");
             int opcion = teclado.nextInt();
             TipoPc tipoPc = null;
-            switch (opcion)
-            {
+            switch (opcion) {
 
                 case 1:
                     tipoPc = TipoPc.PCDEESCRITORIO;
@@ -572,9 +594,38 @@ public class Sistema
         return productoNuevo;
     }
 
+    public Factura comprarProducto(ArrayList<Producto> productos, String metodoDePago) throws MiExcepcionStockInsuficiente
+    {
+        Factura factura=null;
+        double precio=0;
+        Producto producto=null;
 
+        for (Producto p : productos)
+        {
+            usuario.eliminarProductoDelCarrito(p);
+            usuario.agregarAlHistorial(p);
 
+            p.setVendidos(p.getVendidos());
+            precio=precio+p.getPrecio();
 
+            if(p.getStock()<=0)
+            {
+                producto=p;
+            }
+        }
+
+        if(producto!=null)
+        {
+            throw new MiExcepcionStockInsuficiente("ERROR- No se pudo realizar la compra. (stock insuficiente)", producto);
+        }
+        else
+        {
+            factura=new Factura(productos, usuario.getApellido(), usuario.getNombre(), usuario.getEmail(), metodoDePago, precio);
+            gestoraDeFacturas.agregarFactura(factura);
+        }
+
+        return factura;
+    }
 
 
 

@@ -1,14 +1,16 @@
 package ModelsFactura;
 
+import ModelsProducto.Producto;
+import ModelsProducto.ProductoInformatico;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Factura implements Comparable, Serializable {
     private String fecha;
-    private String producto; //recibe producto-marca-modelo concatenado en un string
-    private String marca;
-    private String modelo;
+    private ArrayList<Producto> producto; //recibe producto-marca-modelo concatenado en un string
     private double precio;
     private String apellido;
     private String nombre;
@@ -17,17 +19,15 @@ public class Factura implements Comparable, Serializable {
 
 
 
-    public Factura(String producto,String marca,String modelo,double precio,String apellido,String nombre, String email, String tipoDePago){
+    public Factura(ArrayList<Producto> producto,String apellido,String nombre, String email, String tipoDePago, double precio){
         DateTimeFormatter dtf= DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         this.fecha= dtf.format(LocalDateTime.now());
-        this.producto= producto;
-        this.marca= marca;
-        this.modelo= modelo;
-        this.precio= precio;
+        this.producto=producto;
         this.apellido= apellido;
         this.nombre= nombre;
         this.email= email;
         this.tipoDePago= tipoDePago;
+        this.precio=precio;
     }
 
     @Override
@@ -55,46 +55,46 @@ public class Factura implements Comparable, Serializable {
 
     @Override
     public String toString() {
-        return "Factura{" +
-                "Fecha='" + fecha + '\'' +
-                ", Producto='" + producto + "-" + marca +"-"+ modelo + '\'' +
-                ", Precio=$" + precio +
-                ", Cliente='" + apellido +"-"+ nombre + "(" + email + ")" + '\'' +
-                ", Tipo De Pago='" + tipoDePago + '\'' +
-                '}'+ "\n" ;
+        return "Factura:" +
+                "Fecha='" + fecha + '\n' +
+                "Productos= " + listarProductos() + '\n' +
+                "Precio total=$" + precio + '\n' +
+                "Cliente='" + apellido +"-"+ nombre + "(" + email + ")" + '\n' +
+                "Tipo De Pago='" + tipoDePago + "\n" ;
     }
 
+    public String listarProductos()
+    {
+        String lista = "";
 
-
-
+        for (Producto p: producto)
+        {
+            lista += "\n" + listarProducto(p);
+        }
+        return lista;
+    }
+    public String listarProducto (Producto p)
+    {
+        return  p.getTipoProducto() + " - " + p.getMarca() + " - " +  p.getModelo() + " - " + " Precio= $" + p.getPrecio();
+    }
     public String getFecha() {
             return fecha;
         }
 
-    public String getProducto() {
-            return producto;
-        }
-    public void setProducto(String producto) {
-            this.producto = producto;
-        }
+    public ArrayList<Producto> getProducto() {
+        return producto;
+    }
+
+    public void setProducto(ArrayList<Producto> producto) {
+        this.producto = producto;
+    }
+
     public double getPrecio() {
             return precio;
         }
     public void setPrecio(double precio) {
             this.precio = precio;
         }
-    public String getMarca() {
-        return marca;
-    }
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-    public String getModelo() {
-        return modelo;
-    }
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
     public String getApellido() {
         return apellido;
     }
