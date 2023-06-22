@@ -19,7 +19,13 @@ public class Main {
     public static void main(String[] args)
     {
 
-
+        Usuario usuario = new Usuario("admin", "administrador", "7600", "elAdmin123", "administrador@gmail.com", "admin123", TipoUsuario.ADMINISTRADOR);
+        usuario.setCodigoAdmin("holajava");
+        GestoraDeUsuarios gestora = new GestoraDeUsuarios();
+        gestora.agregarUsuario(usuario);
+        gestora.guardarArchivo();
+        GestoraDeProductos gestoraDeProductos= new GestoraDeProductos();
+        gestoraDeProductos.guardarArchivo();
         Sistema sistema = new Sistema();
         sistema.cicloMenuPrincipal();
 

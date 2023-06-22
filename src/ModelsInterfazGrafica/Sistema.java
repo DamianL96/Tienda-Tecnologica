@@ -33,7 +33,7 @@ public class Sistema
         this.gestoraDeUsuarios= new GestoraDeUsuarios();
         this.gestoraDeProductos= new GestoraDeProductos();
         this.gestoraDeFacturas= new GestoraDeFacturas();
-        this.usuario = null;
+        this.usuario = new Usuario();
         this.opcion = -1;
     }
 
@@ -66,6 +66,7 @@ public class Sistema
 
         do{
             Menu.muestraMenuPrincipal();
+
             opcion = teclado.nextInt();
 
             switch (opcion) {
@@ -91,11 +92,9 @@ public class Sistema
                     {
                         System.out.println(ex.getMessage());
                     }
-
                     break;
 
                 case 2:
-
                     usuario = registrarUsuario();
                     cicloOpcionesUsuario();
                     break;
@@ -120,25 +119,25 @@ public class Sistema
                 case 1:
                     //catalogo completo
                     System.out.println(gestoraDeProductos.infoProductos());
-                    cicloOpcionesDeCatalogo();
+                    cicloOpcionesDeCatalogo(1);
                     break;
 
                 case 2:
                     System.out.println(gestoraDeProductos.infoProductosDeCiertoTipo(TipoProducto.CELULAR));
-                    cicloOpcionesDeCatalogo();
+                    cicloOpcionesDeCatalogo(1);
                     //celulares
                     break;
 
                 case 3:
                     //Smart TV's
                     System.out.println(gestoraDeProductos.infoProductosDeCiertoTipo(TipoProducto.TELEVISOR));
-                    cicloOpcionesDeCatalogo();
+                    cicloOpcionesDeCatalogo(1);
                     break;
 
                 case 4:
                     //Computadoras
                     System.out.println(gestoraDeProductos.infoProductosDeCiertoTipo(TipoProducto.COMPUTADORA));
-                    cicloOpcionesDeCatalogo();
+                    cicloOpcionesDeCatalogo(1);
                     break;
 
                 case 9:
@@ -148,21 +147,26 @@ public class Sistema
         }while (opcion != 10);
     }
 
-    public Producto cicloBuscarProducto(){
+    public Producto cicloBuscarProducto()
+    {
         System.out.println("\n Ingresar MARCA del producto:");
         String marca= teclado.nextLine();
+        teclado.next();
+
         System.out.println("\n Ingresar MODELO del producto:");
         String modelo= teclado.nextLine();
+        teclado.next();
         return gestoraDeProductos.buscaProductoColeccion(marca,modelo);
     }
 
-    public void cicloVerProducto (){
+    public void cicloVerProducto ()
+    {
         Factura factura= null;
         Producto producto=cicloBuscarProducto();
         if(producto == null)
         {
             System.out.println("Producto no encontrado.");
-            cicloOpcionesDeCatalogo();
+            cicloOpcionesDeCatalogo(2);
         }
         else
         {
@@ -199,29 +203,41 @@ public class Sistema
 
 
 
-    public void cicloOpcionesDeCatalogo(){
+    public void cicloOpcionesDeCatalogo(int superior)
+    {
         Menu.opcionesCatalogo();
-        do{
+        do
+        {
             opcion = teclado.nextInt();
 
-            switch (opcion) {
+            switch (opcion)
+            {
                 case 1://ver producto
-
-
                     cicloVerProducto();
                     break;
 
                 case 9:
-                    cicloMuestraCatalogo();
+                    switch (superior)
+                    {
+                        case 1:
+                            cicloMuestraCatalogo();
+                            break;
+
+                        case 2:
+                            cicloVerProducto();
+                            break;
+                    }
                     break;
             }
         }while (opcion != 9);
 
     }
 
-    public void cicloOpcionesAdministrador () {
+    public void cicloOpcionesAdministrador ()
+    {
        teclado.nextLine();
-        do{
+       do
+       {
             Menu.muestraOpcionesAdmin();
             opcion = teclado.nextInt();
 
@@ -563,7 +579,8 @@ public class Sistema
         gestoraDeProductos.agregar(producto.getTipoProducto(), producto);
     }
 
-    public Producto cargaUnProducto(TipoProducto tipo) {
+    public Producto cargaUnProducto(TipoProducto tipo)
+    {
         Producto productoNuevo = null;
 
         System.out.println("Ingrese la marca:");
@@ -573,10 +590,10 @@ public class Sistema
         String modelo = teclado.nextLine();
 
         System.out.println("Ingrese el precio:");
-        double precio = teclado.nextDouble();
+        double precio= teclado.nextDouble();
 
         System.out.println("Ingrese el stock:");
-        int stock = teclado.nextInt();
+        int stock= teclado.nextInt();
 
         teclado.nextLine();
 
@@ -586,7 +603,7 @@ public class Sistema
         // teclado.nextLine();
 
         System.out.println("Ingrese el tamaño de la pantalla:");
-        double tamaneoPantalla = teclado.nextDouble();
+        double tamaneoPantalla= teclado.nextDouble();
 
         teclado.nextLine();
 
@@ -602,7 +619,7 @@ public class Sistema
         //teclado.nextLine();
 
         System.out.println("Ingrese la ram:");
-        int ram = teclado.nextInt();
+        int ram= teclado.nextInt();
 
         teclado.nextLine();
 
@@ -612,105 +629,97 @@ public class Sistema
         //teclado.nextLine();
 
         System.out.println("Ingrese el almacenamiento:");
+        int almacenamiento= teclado.nextInt();
+        teclado.nextLine();
 
-        int almacenamiento = teclado.nextInt();
-
-        if (tipo == TipoProducto.CELULAR) {
-            teclado.next();
-
-            almacenamiento = teclado.nextInt();
+        if(tipo == TipoProducto.CELULAR)
+        {
             teclado.nextLine();
+            System.out.println("Ingrese detalles de la/s camaras traseras:");
+            String camaraTrasera = teclado.nextLine();
 
-            if (tipo == TipoProducto.CELULAR) {
-                teclado.nextLine();
+            //teclado.nextLine();
 
-                System.out.println("Ingrese detalles de la/s camaras traseras:");
-                String camaraTrasera = teclado.nextLine();
+            System.out.println("Ingrese la cantidad de camaras:");
+            int cantCamaras= teclado.nextInt();
+            teclado.nextLine();
+            System.out.println("Ingrese detalle de la camara frontal:");
+            String camaraFrontal = teclado.nextLine();
 
-                //teclado.nextLine();
+            productoNuevo = new Celular(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento, camaraTrasera, cantCamaras, camaraFrontal);
 
-                System.out.println("Ingrese la cantidad de camaras:");
+        } else if (tipo == TipoProducto.TELEVISOR)
+        {
+            System.out.println("Es samart (Ingrese SI o NO):");
+            String op = teclado.nextLine();
+            boolean smart = false;
+            if(op.equalsIgnoreCase("si"))
+            {
+                smart = true;
+            }
+            teclado.nextLine();
+            System.out.println("Ingrese el numero de la opcion:\n");
+            System.out.println("1) LED - 2)LCD - 3)AMOLED - 4)OLED");
+            int opcion = teclado.nextInt();
+            TipoPantalla tipoPantalla = null;
+            switch (opcion)
+            {
 
-                int cantCamaras = teclado.nextInt();
-                //int cantCamaras = teclado.nextInt();
-                teclado.nextLine();
-
-                System.out.println("Ingrese detalle de la camara frontal:");
-                String camaraFrontal = teclado.nextLine();
-
-                productoNuevo = new Celular(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento, camaraTrasera, cantCamaras, camaraFrontal);
-
-            } else if (tipo == TipoProducto.TELEVISOR) {
-                System.out.println("Es samart (Ingrese SI o NO):");
-                String op = teclado.nextLine();
-                boolean smart = false;
-                if (op.equalsIgnoreCase("si")) {
-                    smart = true;
-                }
-                teclado.nextLine();
-                System.out.println("Ingrese el numero de la opcion:\n");
-                System.out.println("1) LED - 2)LCD - 3)AMOLED - 4)OLED");
-                int opcion = teclado.nextInt();
-                TipoPantalla tipoPantalla = null;
-                switch (opcion) {
-
-                    case 1:
-                        tipoPantalla = TipoPantalla.LED;
-                        break;
-                    case 2:
-                        tipoPantalla = TipoPantalla.LCD;
-                        break;
-                    case 3:
-                        tipoPantalla = TipoPantalla.AMOLED;
-                        break;
-                    case 4:
-                        tipoPantalla = TipoPantalla.OLED;
-                        break;
-                }
-                //teclado.nextLine();
-                productoNuevo = new Televisor(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento, smart, tipoPantalla);
-
-
-            } else if (tipo == TipoProducto.COMPUTADORA) {
-
-            } else if (tipo == TipoProducto.COMPUTADORA) {
-
-
-                System.out.println("Ingrese detalle de la webCam:");
-                String webCam = teclado.nextLine();
-
-                System.out.println("Ingrese detalle de la bateria:");
-                String bateria = teclado.nextLine();
-
-                System.out.println("Tiene lector(Ingrese SI o NO):");
-                String op = teclado.nextLine();
-                boolean lector = false;
-                if (op.equalsIgnoreCase("si")) {
-                    lector = true;
-                }
-                teclado.nextLine();
-                System.out.println("Ingrese el numero de la opcion:\n");
-                System.out.println("1) PCDEESCRITORIO - 2)NOTEBOOK - 3)NETBOOK");
-                int opcion = teclado.nextInt();
-                TipoPc tipoPc = null;
-                switch (opcion) {
-
-                    case 1:
-                        tipoPc = TipoPc.PCDEESCRITORIO;
-                        break;
-                    case 2:
-                        tipoPc = TipoPc.NOTEBOOK;
-                        break;
-                    case 3:
-                        tipoPc = TipoPc.NETBOOK;
-                        break;
-                }
-                teclado.nextLine();
-                productoNuevo = new Computadora(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento, webCam, bateria, lector, tipoPc);
+                case 1:
+                    tipoPantalla = TipoPantalla.LED;
+                    break;
+                case 2:
+                    tipoPantalla = TipoPantalla.LCD;
+                    break;
+                case 3:
+                    tipoPantalla = TipoPantalla.AMOLED;
+                    break;
+                case 4:
+                    tipoPantalla = TipoPantalla.OLED;
+                    break;
             }
             //teclado.nextLine();
+            productoNuevo = new Televisor(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento, smart, tipoPantalla);
+
+        } else if (tipo == TipoProducto.COMPUTADORA)
+        {
+
+            System.out.println("Ingrese detalle de la webCam:");
+            String webCam = teclado.nextLine();
+
+            System.out.println("Ingrese detalle de la bateria:");
+            String bateria = teclado.nextLine();
+
+            System.out.println("Tiene lector(Ingrese SI o NO):");
+            String op = teclado.nextLine();
+            boolean lector = false;
+            if(op.equalsIgnoreCase("si"))
+            {
+                lector = true;
+            }
+            teclado.nextLine();
+            System.out.println("Ingrese el numero de la opcion:\n");
+            System.out.println("1) PCDEESCRITORIO - 2)NOTEBOOK - 3)NETBOOK");
+            int opcion = teclado.nextInt();
+            TipoPc tipoPc = null;
+            switch (opcion)
+            {
+
+                case 1:
+                    tipoPc = TipoPc.PCDEESCRITORIO;
+                    break;
+                case 2:
+                    tipoPc = TipoPc.NOTEBOOK;
+                    break;
+                case 3:
+                    tipoPc = TipoPc.NETBOOK;
+                    break;
+            }
+            teclado.nextLine();
+            productoNuevo = new Computadora(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento, webCam, bateria, lector, tipoPc);
         }
-            return productoNuevo;
+        //teclado.nextLine();
+        return productoNuevo;
     }
 
     public Factura comprarProducto(ArrayList <Producto> productos, String metodoDePago) throws MiExcepcionStockInsuficiente
