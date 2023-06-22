@@ -114,10 +114,9 @@ public abstract class Producto implements Serializable
     }
 
     //incrementa la cantidad de vendidos y disminuye el stock
-    public void setVendidos(int vendidos) {
-
-        this.vendidos += vendidos;
-        stock = stock-vendidos;
+    public void setVendidos()
+    {
+        this.vendidos ++;
     }
 
     public int getId() {
@@ -129,6 +128,12 @@ public abstract class Producto implements Serializable
     }
 
 
+    public void agregarStock(int agregado){
+        stock +=agregado;
+    }
+    public void quitarStock(int quitado){
+        stock -= quitado;
+    }
     public void incrementrarStock()
     {
         stock++;

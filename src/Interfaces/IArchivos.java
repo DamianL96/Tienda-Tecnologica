@@ -1,6 +1,6 @@
 package Interfaces;
 
-public interface iArchivos {
+public interface IArchivos {
     public void guardarArchivo(String nombreArchivo);
 
     public void leerArchivo(String nombreArchivo);

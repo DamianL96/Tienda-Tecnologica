@@ -51,8 +51,10 @@ public class GestoraDeProductos implements Serializable{
         String info = "";
         System.out.println(tipoProducto);
         ArrayList<Producto> aux=  productos.get(tipoProducto); //
-        for(Producto p : aux){
-            info += "\n" + p.toStringCatalogo();
+        for(Producto p : aux) {
+            if (p.getStock() > 0) {
+                info += "\n" + p.toStringCatalogo();
+            }
         }
         return info;
     }

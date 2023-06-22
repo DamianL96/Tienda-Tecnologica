@@ -9,7 +9,7 @@ public enum TipoOpciones {
 
     AGREGARALCARRITO("Agregar al carrito"), MEDIOPAGO("Medio de Pago"), AGREGARPRODUCTO("Agrega nuevo producto"),
     VERFACTURAS("Ver Facturas"),MODIFICARPRECIO("Modificar Precio"),CAMBIARSTOCK("Aumentar-Disminuit Stock"),
-    GESTIONARINVENTARIO("Gestionar Inventario");
+    GESTIONARINVENTARIO("Gestionar Inventario"),AGREGARSTOCK("Agregar Stock"),QUITARSTOCK("Quitar Stock");
 
     private String nombre;
 

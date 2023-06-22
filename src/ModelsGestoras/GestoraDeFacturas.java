@@ -1,16 +1,14 @@
 package ModelsGestoras;
 
-import ModelsControladoraArchivos.ControladoraArchivo;
 import ModelsFactura.Factura;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.TreeSet;
-import Interfaces.iArchivos;
+
+import Interfaces.IArchivos;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-public class GestoraDeFacturas implements iArchivos {
+public class GestoraDeFacturas implements IArchivos {
     private ArrayList<Factura> facturas;
     public GestoraDeFacturas() {
         facturas = new ArrayList<>();
