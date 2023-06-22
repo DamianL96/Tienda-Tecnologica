@@ -364,23 +364,9 @@ public class Sistema
 
             switch (opcion){
                 case 1:
-                    factura=cicloComprar(usuario.getMiCarrito());
+                    ArrayList<Producto> productosAComprar=comprarProducto();
+                    factura=cicloComprar(productosAComprar);
                     System.out.println(factura.toString());
-                    /*int seguirComprando=0;
-                    ArrayList<Producto> productosAComprar= new ArrayList<>();
-
-                    do {
-                        System.out.println("Ingrese el producto que desee comprar: ");
-                        int opcionProducto= teclado.nextInt();
-
-                        Producto producto= usuario.getMiCarrito().get(opcionProducto-1); //-1 porque el carrito va a mostrar desde la posicion 1, pero el array empieza en la 0
-                        productosAComprar.add(producto);
-                        System.out.println("Desea seguir comprando? 1-Si 2-No ");
-                        seguirComprando = teclado.nextInt();
-
-                    } while (seguirComprando==1);
-                    cicloComprar(productosAComprar);*/
-
                     break;
 
                 case 2:
@@ -413,11 +399,14 @@ public class Sistema
             opcion= teclado.nextInt();
             switch (opcion){
                 case 1:
+                    teclado.nextLine();
                     System.out.println("Efectivo-Tarjeta-Transfencia");
-                    String metodoDePago=teclado.next();
+                    String metodoDePago=teclado.nextLine();
+
                     try
                     {
-                        factura=comprarProducto(productosAComprar, metodoDePago);
+                        factura=generarFactura(productosAComprar, metodoDePago);
+                        //System.out.println(factura.toString());
 
                     } catch (MiExcepcionStockInsuficiente ex)
                     {
@@ -775,7 +764,7 @@ public class Sistema
         return productoNuevo;
     }
 
-    public Factura comprarProducto(ArrayList <Producto> productos, String metodoDePago) throws MiExcepcionStockInsuficiente
+    public Factura generarFactura(ArrayList <Producto> productos, String metodoDePago) throws MiExcepcionStockInsuficiente
     {
         Factura factura=null;
         double precio=0;
@@ -806,6 +795,35 @@ public class Sistema
         }
 
         return factura;
+    }
+
+    private ArrayList<Producto> comprarProducto ()
+    {
+        int seguirComprando=0;
+        ArrayList<Producto> productosAComprar= new ArrayList<>();
+
+        do {
+            System.out.println("Ingrese el producto que desee comprar: ");
+            int opcionProducto= teclado.nextInt();
+
+            System.out.println("Ingrese la cantidad de productos: ");
+            int cant=teclado.nextInt();
+
+            Producto producto= usuario.getMiCarrito().get(opcionProducto-1); //-1 porque el carrito va a mostrar desde la posicion 1, pero el array empieza en la 0
+
+            for(int i=0; i<cant; i++)
+            {
+                productosAComprar.add(producto);
+            }
+
+            System.out.println("Desea seguir comprando? 1-Si 2-No ");
+            seguirComprando = teclado.nextInt();
+
+        } while (seguirComprando==1);
+
+        teclado.nextLine();
+
+        return productosAComprar;
     }
 
     private int cicloComentario() {
