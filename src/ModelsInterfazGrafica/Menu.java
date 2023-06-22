@@ -25,7 +25,8 @@ public class Menu
     {
         System.out.println("ADMIN -- Ingrese el numero de la opcion que desee");
         System.out.println("1- "+TipoOpciones.MODIFICARPRODUCTO.getNombre());
-        System.out.println("2- "+TipoOpciones.MISDATOS.getNombre());
+        System.out.println("2- "+TipoOpciones.AGREGARPRODUCTO.getNombre());
+        System.out.println("3- "+TipoOpciones.MISDATOS.getNombre());
         System.out.println("9- "+TipoOpciones.VOLVER.getNombre());
     }
 
