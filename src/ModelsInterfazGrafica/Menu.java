@@ -24,11 +24,10 @@ public class Menu
     public static void muestraOpcionesAdmin()
     {
         System.out.println("ADMIN -- Ingrese el numero de la opcion que desee");
-        System.out.println("1- "+TipoOpciones.MODIFICARPRODUCTO.getNombre());
-        System.out.println("2- "+TipoOpciones.AGREGARPRODUCTO.getNombre());
-        System.out.println("3- "+TipoOpciones.GESTIONARINVENTARIO.getNombre());
-        System.out.println("4- "+TipoOpciones.VERFACTURAS.getNombre());
-        System.out.println("5- "+TipoOpciones.MISDATOS.getNombre());
+        System.out.println("1- "+TipoOpciones.AGREGARPRODUCTO.getNombre());
+        System.out.println("2- "+TipoOpciones.GESTIONARINVENTARIO.getNombre());
+        System.out.println("3- "+TipoOpciones.VERFACTURAS.getNombre());
+        System.out.println("4- "+TipoOpciones.MISDATOS.getNombre());
         System.out.println("9- "+TipoOpciones.VOLVER.getNombre());
     }
 
@@ -75,20 +74,13 @@ public class Menu
         System.out.println("OPCIONES -- Ingrese el numero de la opcion que desee");
         System.out.println("1- "+TipoOpciones.AGREGARALCARRITO.getNombre());
         System.out.println("2- "+TipoOpciones.COMPRAR.getNombre());
-        System.out.println("3- "+TipoOpciones.DEJARCOMENTARIO.getNombre());
+        //System.out.println("3- "+TipoOpciones.DEJARCOMENTARIO.getNombre());
 
         System.out.println("9- "+TipoOpciones.VOLVER.getNombre());
     }
 
-    public static void verMisDatos(){
-        System.out.println("MIS DATOS -- Ingrese el numero de la opcion que desee");
-        System.out.println("1- "+TipoOpciones.MISDATOS.getNombre());
-
-        System.out.println("9- "+TipoOpciones.VOLVER.getNombre());
-
-    }
-    public static void menuComentar(){
-        System.out.println("COMENTARIO DEJADO");
+    public static void volver(){
+        System.out.println(" -- Ingrese el numero de la opcion que desee");
         System.out.println("9- "+TipoOpciones.VOLVER.getNombre());
     }
 

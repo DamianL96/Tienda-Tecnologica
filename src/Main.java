@@ -21,9 +21,9 @@ public class Main {
 
 
         Sistema sistema = new Sistema();
-        //sistema.cicloMenuPrincipal();
+        sistema.cicloMenuPrincipal();
 
-
+/*
         Producto celular = new Celular(TipoProducto.CELULAR, "11", "Iphone", 150000, 5, null, 0, 0, 6.1, "FULL HD", "Cable de carga", "m1", 2, "IOS 15", 128, "Camara principal de 12mpx y un gran angulas de 8 mpx", 2, "1 sensor de 8 mpx");
         Producto celular1 = new Celular(TipoProducto.CELULAR, "10", "Iphone", 150000, 5, null, 0, 0, 6.1, "FULL HD", "Cable de carga", "m1", 2, "IOS 15", 128, "Camara principal de 12mpx y un gran angulas de 8 mpx", 2, "1 sensor de 8 mpx");
         Producto celular2 = new Celular(TipoProducto.CELULAR, "13", "Iphone", 150000, 5, null, 0, 0, 6.1, "FULL HD", "Cable de carga", "m1", 2, "IOS 15", 128, "Camara principal de 12mpx y un gran angulas de 8 mpx", 2, "1 sensor de 8 mpx");

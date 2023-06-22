@@ -33,7 +33,7 @@ public class Sistema
         this.gestoraDeUsuarios= new GestoraDeUsuarios();
         this.gestoraDeProductos= new GestoraDeProductos();
         this.gestoraDeFacturas= new GestoraDeFacturas();
-        this.usuario = new Usuario();
+        this.usuario = null;
         this.opcion = -1;
     }
 
@@ -105,16 +105,15 @@ public class Sistema
                     cicloMuestraCatalogo();
                     break;
             }
-        }while (opcion != 9);
+        }while (opcion != 0);
         guardaSistema();
     }
 
 
 
     public void cicloMuestraCatalogo(){
-
+        Menu.muestraCatalogo();
         do{
-            Menu.muestraCatalogo();
             opcion = teclado.nextInt();
 
             switch (opcion) {
@@ -141,48 +140,64 @@ public class Sistema
                     System.out.println(gestoraDeProductos.infoProductosDeCiertoTipo(TipoProducto.COMPUTADORA));
                     cicloOpcionesDeCatalogo();
                     break;
+
                 case 9:
                     cicloMenuPrincipal();
                     break;
             }
-        }while (opcion != 9);
+        }while (opcion != 10);
     }
 
-
+    public Producto cicloBuscarProducto(){
+        System.out.println("\n Ingresar MARCA del producto:");
+        String marca= teclado.nextLine();
+        System.out.println("\n Ingresar MODELO del producto:");
+        String modelo= teclado.nextLine();
+        return gestoraDeProductos.buscaProductoColeccion(marca,modelo);
+    }
 
     public void cicloVerProducto (){
-        Menu.verProductoMarcaModelo();
-        do {
-            opcion= teclado.nextInt();
+        Factura factura= null;
+        Producto producto=cicloBuscarProducto();
+        if(producto == null)
+        {
+            System.out.println("Producto no encontrado.");
+            cicloOpcionesDeCatalogo();
+        }
+        else
+        {
+            System.out.println(producto.toString());//Muestro el producto
+            Menu.verProductoMarcaModelo();
+            do
+            {
+                opcion= teclado.nextInt();
 
-            switch (opcion) {
-                case 1://agregar al carrito
-                    System.out.println("producto agregado al carrito");
-                    break;
+                switch (opcion)
+                {
+                    case 1://agregar al carrito
+                        usuario.agregarProductoAlCarrito(producto);
+                        cicloVerCarrito(2);
+                        break;
 
-                case 2://compra
-                    //cicloComprar();
-                    break;
-                case 3://comentario
+                    case 2://compra
+                        factura=cicloComprar(usuario.getMiCarrito());
+                        System.out.println(factura.toString());
+                        cicloMuestraCatalogo();
+                        break;
+
+                /*case 3://comentario      IGNOREMOS ESTO
                     cicloComentario();
-                case 9:
-                    cicloMuestraCatalogo();
-                    break;
-            }
-        }while (opcion != 9);
+                    break;*/
 
+                    case 9:
+                        cicloMuestraCatalogo();
+                        break;
+                }
+            }while (opcion != 9);
+        }
     }
 
-    private int cicloComentario() {
-        Menu.menuComentar();
 
-        do{
-            opcion=teclado.nextInt();
-
-        }while (opcion != 9);
-
-        return opcion;
-    }
 
     public void cicloOpcionesDeCatalogo(){
         Menu.opcionesCatalogo();
@@ -191,6 +206,8 @@ public class Sistema
 
             switch (opcion) {
                 case 1://ver producto
+
+
                     cicloVerProducto();
                     break;
 
@@ -210,16 +227,20 @@ public class Sistema
 
             switch (opcion) {
                 case 1:
-
-                    break;
-
-                case 2:
-                    agregarProducto();
+                    cicloAgregarProducto();
                     //teclado.next();
                     break;
 
+                case 2:
+                    //gestionar inventario
+                    break;
                 case 3:
-
+                    //ver facturas
+                    cicloVerFacturas();
+                    break;
+                case 4:
+                    //mis datos
+                    cicloVerMisDatosAdmin();
                     break;
 
                 case 9:
@@ -247,13 +268,12 @@ public class Sistema
                 case 2:
                     //Carrito
 
-
-                    //cicloVerCarrito();
+                    cicloVerCarrito(1);
                     break;
 
                 case 3:
                     //Mis Datos
-                    cicloVerMisDatos();
+                    cicloVerMisDatosUsuario();
                     break;
 
                 case 9:
@@ -266,16 +286,17 @@ public class Sistema
         //return opcion;
     }
 
-
-    public int cicloVerCarrito(){
+    public void cicloVerCarrito(int superior){
+        Factura factura= null;
+        System.out.println(usuario.getMiCarrito());
         Menu.muestraCarrito();
-
         do {
             opcion= teclado.nextInt();
 
             switch (opcion){
                 case 1:
-
+                    factura=cicloComprar(usuario.getMiCarrito());
+                    System.out.println(factura.toString());
                     /*int seguirComprando=0;
                     ArrayList<Producto> productosAComprar= new ArrayList<>();
 
@@ -294,29 +315,37 @@ public class Sistema
                     break;
 
                 case 2:
-                    System.out.println("Carrito limpio");
+                    cicloLimpiaCarrito();
                     break;
 
                 case 9:
-                    cicloOpcionesUsuario ();
-                    break;
+                    switch (superior){ //Para volver a su respectivo metodo que lo invoca
+                        case 1: //Lo llama cicloOpcionesUsuario
+                            cicloOpcionesUsuario();
+                            break;
 
+                        case 2://Lo llama cicloVerProducto
+                            cicloVerProducto();
+                            break;
+
+                        case 3://Lo llama cicloLimpiarCarrito
+                            cicloLimpiaCarrito();
+                            break;
+                    }
+                    break;
             }
         }while (opcion != 9);
-
-        return opcion;
     }
 
-
-    public int cicloComprar(ArrayList<Producto> productosAComprar){
+    public Factura cicloComprar(ArrayList<Producto> productosAComprar){
         Menu.opcionesCompra();
+        Factura factura= null;
         do {
             opcion= teclado.nextInt();
             switch (opcion){
                 case 1:
                     System.out.println("Efectivo-Tarjeta-Transfencia");
                     String metodoDePago=teclado.next();
-                    Factura factura;
                     try
                     {
                         factura=comprarProducto(productosAComprar, metodoDePago);
@@ -330,19 +359,71 @@ public class Sistema
                     cicloOpcionesUsuario ();
                     break;
             }
-        }while (opcion != 9);
-
-        return opcion;
+        }while (opcion != 10);
+        return factura;
     }
 
-    public int cicloVerMisDatos(){
-        Menu.verMisDatos();
-
-        do {
+    public void cicloVerMisDatosAdmin(){
+        System.out.println("\n MIS DATOS");
+        System.out.println(usuario.toString());
+        Menu.volver();
+        do{
             opcion= teclado.nextInt();
+            switch (opcion){
+                case 9:
+                    cicloOpcionesAdministrador();
+                    break;
+            }
+        }while (opcion != 9);
+    }
+
+    public void cicloLimpiaCarrito(){//BORRA TODO EL CARRITO
+        usuario.limpiarCarrito();
+        cicloVerCarrito(3);
+    }
+
+    public void cicloVerMisDatosUsuario(){
+        System.out.println("\n MIS DATOS");
+        System.out.println(usuario.toString());
+        Menu.volver();
+        do{
+            opcion= teclado.nextInt();
+            switch (opcion){
+                case 9:
+                    cicloOpcionesUsuario();
+                    break;
+            }
+        }while (opcion != 9);
+    }
+
+    public void cicloAgregarProducto(){
+        System.out.println("\n AGREGAR PRODUCTO");
+        agregarProducto();
+
+        Menu.volver();
+        do{
+            opcion= teclado.nextInt();
+            switch (opcion){
+                case 9:
+                    cicloOpcionesAdministrador();
+                    break;
+            }
+        }while (opcion != 9);
+    }
+
+    public void cicloVerFacturas(){
+        System.out.println("\n VER FACTURAS");
+        System.out.println(gestoraDeFacturas.listarFacturas());
+        Menu.volver();
+        do{
+            opcion= teclado.nextInt();
+            switch (opcion){
+                case 9:
+                    cicloOpcionesAdministrador();
+                    break;
+            }
         }while (opcion != 9);
 
-        return opcion;
     }
 
 
@@ -403,7 +484,6 @@ public class Sistema
         return flag;
     }
 
-
     public Usuario registrarUsuario()
     {
         Usuario usuario = cargaUnUsuario();
@@ -460,7 +540,6 @@ public class Sistema
         return usuario;
     }
 
-
     public void agregarProducto()
     {
         System.out.println("Ingrese que tipo de producto desea cargar:");
@@ -483,7 +562,6 @@ public class Sistema
         Producto producto = cargaUnProducto(tipoP);
         gestoraDeProductos.agregar(producto.getTipoProducto(), producto);
     }
-
 
     public Producto cargaUnProducto(TipoProducto tipo) {
         Producto productoNuevo = null;
@@ -634,6 +712,7 @@ public class Sistema
         }
             return productoNuevo;
     }
+
     public Factura comprarProducto(ArrayList <Producto> productos, String metodoDePago) throws MiExcepcionStockInsuficiente
     {
         Factura factura=null;
@@ -667,6 +746,17 @@ public class Sistema
         return factura;
     }
 
+    private int cicloComentario() {
+        System.out.println("\n COMENTARIO");
+        Menu.volver();
+
+        do{
+            opcion=teclado.nextInt();
+
+        }while (opcion != 9);
+
+        return opcion;
+    }
 
 
 

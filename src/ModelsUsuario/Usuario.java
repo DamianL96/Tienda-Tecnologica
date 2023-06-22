@@ -51,9 +51,24 @@ public class Usuario extends Persona{
     public ArrayList<Producto> getMiCarrito() {
         return miCarrito;
     }
+    public String listarCarrito(){
+        String lista= "";
+        for (int i = 0; i < miCarrito.size(); i++) {
+            lista += miCarrito.get(i).toString();
+        }
+        return lista;
+    }
 
     public ArrayList<Producto> getHistorialDeCompra() {
         return historialDeCompra;
+    }
+
+    public String listarHistorial() {
+        String lista = "";
+        for (int i = 0; i < historialDeCompra.size(); i++) {
+            lista += historialDeCompra.get(i).toString();
+        }
+        return lista;
     }
 
     public String getNombreDeUsuario() {
@@ -92,6 +107,7 @@ public class Usuario extends Persona{
     {
         return id;
     }
+
 
     public void setId(int id) {
         this.id = id;
@@ -162,6 +178,9 @@ public class Usuario extends Persona{
         return true;
     }
 
+    public void limpiarCarrito(){
+        miCarrito.clear();;
+    }
     @Override
     public boolean equals(Object obj)
     {
@@ -189,13 +208,11 @@ public class Usuario extends Persona{
     public String toString() {
         return super.toString()+
                 "nombreDeUsuario='" + nombreDeUsuario + '\'' +
-                ", email='" + email + '\'' +
-                ", contrasenia='" + contrasenia + '\'' +
-                ", codigoAdmin='" + codigoAdmin + '\'' +
-                ", id=" + id +
-                ", tipo=" + tipo +
-                ", miCarrito=" + miCarrito +
-                ", historialDeCompra=" + historialDeCompra +
+                "\n email='" + email + '\'' +
+                "\n contrasenia='" + contrasenia + '\'' +
+                "\n tipo=" + tipo +
+                "\n miCarrito=" + listarCarrito() +
+                "\n historialDeCompra=" + historialDeCompra +
                 '}';
     }
 }
