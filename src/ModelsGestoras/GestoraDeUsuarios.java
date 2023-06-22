@@ -39,6 +39,7 @@ public class GestoraDeUsuarios
             if(aux.getNombreDeUsuario().equals(nombreUsuario))
             {
                 encontrado = aux;
+                result = 0;
             }
             /*
             result = CharSequence.compare(aux.getNombreDeUsuario(), nombreUsuario);
