@@ -7,63 +7,66 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 import Interfaces.iArchivos;
-public class GestoraDeFacturas implements iArchivos {
-    private TreeSet<Factura> facturas;
+import org.json.JSONArray;
+import org.json.JSONException;
 
+public class GestoraDeFacturas implements iArchivos {
+    private ArrayList<Factura> facturas;
     public GestoraDeFacturas() {
-        facturas = new TreeSet<>();
+        facturas = new ArrayList<>();
     }
 
-    public boolean agregarFactura(Factura factura) {
-        boolean flag = false;
-        flag = facturas.add(factura);
-        return flag;
+    public boolean agregarFactura(Factura factura)
+    {
+        return facturas.add(factura);
     }
 
     public String listarFacturas() {
+
         String listado = "";
 
-        Iterator<Factura> it = facturas.iterator();
-        while (it.hasNext()) {
-
-            listado += it.next().toString();
+        for (Factura f : facturas)
+        {
+            listado += "\n" + f.toString();
         }
         return listado;
     }
 
-    public String listarFacturasPorFecha(String fecha) {
-        String listado = "";
-        Iterator<Factura> it = facturas.iterator();
 
-        while (it.hasNext()) {
-            if (it.next().getFecha().compareTo(fecha) <= 0)//lista las fechas mas recientes a la fecha recibida
-            {
-                listado += it.next().toString();
-            }
-        }
-        return listado;
-    }
     @Override
     public void guardarArchivo(String nombreArchivo){
-        ArrayList<Factura> aGuardar= new ArrayList<>();
-        Iterator<Factura> it= facturas.iterator();
-        while (it.hasNext())
+
+        JSONArray jsonArray = new JSONArray();
+        for (Factura f : facturas)
         {
-            Factura aux= it.next();
-            aGuardar.add(aux);
+            jsonArray.put(f.toJson());
         }
-        ControladoraArchivo.guardar(aGuardar,nombreArchivo);
+        JsonUtiles.grabar(jsonArray, nombreArchivo);
     }
     @Override
     public void leerArchivo(String nombreArchivo){
 
-        ArrayList<Factura>facturas= new ArrayList<>();
-        ControladoraArchivo.leer(facturas,nombreArchivo);
-
-        for (Factura fa:facturas)
+        try {
+            JSONArray jsonArray = new JSONArray(JsonUtiles.leer(nombreArchivo));
+            for (int i = 0; i<jsonArray.length(); i++)
+            {
+                Factura f = new Factura();
+                f.fromJson(jsonArray.getJSONObject(i));
+                facturas.add(f);
+            }
+        }
+        catch (JSONException ex)
         {
-            agregarFactura(fa);
+            System.out.println(ex.getMessage());
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
         }
     }
+
+
+
+
 
 }

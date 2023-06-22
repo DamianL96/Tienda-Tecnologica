@@ -1,6 +1,8 @@
 package ModelsProducto;
 
 import ModelsEnum.TipoProducto;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -199,5 +201,25 @@ public abstract class Producto implements Serializable
                 "\nModelo " + modelo +
                 "\nPrecio: " + precio;
     }
+
+
+    public JSONObject toJson() throws JSONException
+    {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("modelo", modelo);
+        jsonObject.put("marca", marca);
+        jsonObject.put("precio", precio);
+        return jsonObject;
+    }
+
+    public void fromJson(JSONObject jsonObject) throws JSONException
+    {
+        modelo = jsonObject.getString("modelo");
+        marca = jsonObject.getString("marca");
+        precio = jsonObject.getDouble("precio");
+    }
+
+
+
 
 }
