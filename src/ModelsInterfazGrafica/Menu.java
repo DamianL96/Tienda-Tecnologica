@@ -26,16 +26,17 @@ public class Menu
         System.out.println("ADMIN -- Ingrese el numero de la opcion que desee");
         System.out.println("1- "+TipoOpciones.MODIFICARPRODUCTO.getNombre());
         System.out.println("2- "+TipoOpciones.AGREGARPRODUCTO.getNombre());
-        System.out.println("3- "+TipoOpciones.MISDATOS.getNombre());
+        System.out.println("3- "+TipoOpciones.GESTIONARINVENTARIO.getNombre());
+        System.out.println("4- "+TipoOpciones.VERFACTURAS.getNombre());
+        System.out.println("5- "+TipoOpciones.MISDATOS.getNombre());
         System.out.println("9- "+TipoOpciones.VOLVER.getNombre());
     }
 
     public static void muestraGestionarInventario()
     {
         System.out.println("GESTIONAR INVENTARIO -- Ingrese el numero de la opcion que desee");
-        System.out.println("1- ");
-        System.out.println("2- ");
-        System.out.println("3- ");
+        System.out.println("1- "+TipoOpciones.AGREGARPRODUCTO.getNombre());
+        System.out.println("2- "+TipoOpciones.CAMBIARSTOCK.getNombre());
         System.out.println("9- "+TipoOpciones.VOLVER.getNombre());
     }
 
