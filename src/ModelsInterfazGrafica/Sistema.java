@@ -109,8 +109,9 @@ public class Sistema
 
 
     public void cicloMuestraCatalogo(){
-        Menu.muestraCatalogo();
+
         do{
+            Menu.muestraCatalogo();
             opcion = teclado.nextInt();
 
             switch (opcion) {
@@ -137,6 +138,9 @@ public class Sistema
                     System.out.println(gestoraDeProductos.infoProductosDeCiertoTipo(TipoProducto.COMPUTADORA));
                     cicloOpcionesDeCatalogo();
                     break;
+                case 9:
+                    cicloMenuPrincipal();
+                    break;
             }
         }while (opcion != 9);
     }
@@ -159,7 +163,7 @@ public class Sistema
                 case 3://comentario
                     cicloComentario();
                 case 9:
-                    //Volver
+                    cicloMuestraCatalogo();
                     break;
             }
         }while (opcion != 9);
@@ -188,7 +192,7 @@ public class Sistema
                     break;
 
                 case 9:
-                    //Volver
+                    cicloMuestraCatalogo();
                     break;
             }
         }while (opcion != 9);
@@ -196,8 +200,9 @@ public class Sistema
     }
 
     public void cicloOpcionesAdministrador () {
-        Menu.muestraOpcionesAdmin();
+       teclado.nextLine();
         do{
+            Menu.muestraOpcionesAdmin();
             opcion = teclado.nextInt();
 
             switch (opcion) {
@@ -207,15 +212,16 @@ public class Sistema
 
                 case 2:
                     agregarProducto();
+                    //teclado.next();
                     break;
 
                 case 3:
 
                     break;
 
-                /*case 9:
-                    //Volver
-                    break;*/
+                case 9:
+                    cicloMenuPrincipal();
+                    break;
 
             }
             guardaSistema();
@@ -246,7 +252,7 @@ public class Sistema
                     break;
 
                 case 9:
-                    //Volver
+                    cicloMenuPrincipal();
                     break;
 
             }
@@ -272,6 +278,7 @@ public class Sistema
                     break;
 
                 case 9:
+                    cicloOpcionesUsuario ();
                     break;
 
             }
@@ -290,6 +297,7 @@ public class Sistema
                     System.out.println("Efectivo-Tarjeta-Transfencia");
                     break;
                 case 9:
+                    cicloOpcionesUsuario ();
                     break;
             }
         }while (opcion != 9);
@@ -316,9 +324,9 @@ public class Sistema
     public Usuario iniciarSesion() throws MiExcepcionNombreDeUsuario//de inicio de sesion
     {
         boolean flag=false;
-
+        teclado.nextLine();
         System.out.println("Ingresar nombre de usuario: ");
-        String nombreDeUsuario=teclado.next();
+        String nombreDeUsuario= teclado.nextLine();
         Usuario usuario=gestoraDeUsuarios.verificarNombreDeUsuario(nombreDeUsuario);
 
         if(usuario!=null)
@@ -326,7 +334,7 @@ public class Sistema
             do {
                 try {
                     System.out.println("Ingresar contraseña: ");
-                    String contrasenia = teclado.next();
+                    String contrasenia = teclado.nextLine();
 
                     flag = gestoraDeUsuarios.verificarContrasenia(contrasenia, usuario);
 
@@ -351,7 +359,7 @@ public class Sistema
         if(usuario.getTipo() == TipoUsuario.ADMINISTRADOR)
         {
             System.out.println("Ingresar codigo de administrador: ");
-            String codigoAdmin=teclado.next();
+            String codigoAdmin=teclado.nextLine();
             try
             {
                 flag = gestoraDeUsuarios.verificarCodigoDeAdmin(usuario, codigoAdmin);
@@ -389,23 +397,33 @@ public class Sistema
 
     public Usuario cargaUnUsuario()
     {
+        boolean flag = true;
+        teclado.nextLine();
         System.out.println("Nombre: ");
-        String nombre=teclado.next();
+        String nombre=teclado.nextLine();
 
         System.out.println("Apellido: ");
-        String apellido=teclado.next();
+        String apellido=teclado.nextLine();
 
-        System.out.println("Nombre de usuario: ");
-        String nombreDeUsuario=teclado.next();
+        String nombreDeUsuario = "";
+        do {
+            System.out.println("Nombre de usuario: ");
+            nombreDeUsuario=teclado.nextLine();
+            if(gestoraDeUsuarios.verificarNombreDeUsuario(nombreDeUsuario) != null)
+            {
+                System.out.println("Nombre de usuario ya utilizado - eliga otro");
+                flag = false;
+            }
+        }while (flag == false);
 
         System.out.println("Email: ");
-        String email=teclado.next();
+        String email=teclado.nextLine();
 
         System.out.println("Contraseña: ");
-        String contrasenia=teclado.next();
+        String contrasenia=teclado.nextLine();
 
         System.out.println("Codigo postal: ");
-        String codigoPostal=teclado.next();
+        String codigoPostal=teclado.nextLine();
 
         Usuario usuario=new Usuario(nombre, apellido, codigoPostal, nombreDeUsuario, email, contrasenia, TipoUsuario.CLIENTE);
 
@@ -418,6 +436,7 @@ public class Sistema
         System.out.println("Ingrese que tipo de producto desea cargar:");
         System.out.println("1) Televisor - 2)Celular - 3)Computadora");
         int opcion = teclado.nextInt();
+        teclado.nextLine();
         TipoProducto tipoP = null;
         switch (opcion)
         {
@@ -441,10 +460,10 @@ public class Sistema
         Producto productoNuevo = null;
 
         System.out.println("Ingrese la marca:");
-        String marca = teclado.next();
+        String marca = teclado.nextLine();
 
         System.out.println("Ingrese el modelo:");
-        String modelo = teclado.next();
+        String modelo = teclado.nextLine();
 
         System.out.println("Ingrese el precio:");
         double precio= teclado.nextDouble();
@@ -452,67 +471,69 @@ public class Sistema
         System.out.println("Ingrese el stock:");
         int stock= teclado.nextInt();
 
-        teclado.next();
+        teclado.nextLine();
 
         System.out.println("Ingrese la descripcion:");
-        String descripcion = teclado.next();
+        String descripcion = teclado.nextLine();
 
-        teclado.next();
+       // teclado.nextLine();
 
         System.out.println("Ingrese el tamaño de la pantalla:");
         double tamaneoPantalla= teclado.nextDouble();
 
-        teclado.next();
+        teclado.nextLine();
 
         System.out.println("Ingrese la resolucion:");
-        String resolucion = teclado.next();
+        String resolucion = teclado.nextLine();
 
         System.out.println("Ingrese los accesorios:");
-        String accesorios = teclado.next();
+        String accesorios = teclado.nextLine();
 
         System.out.println("Ingrese el procesador:");
-        String procesador = teclado.next();
+        String procesador = teclado.nextLine();
 
-        teclado.next();
+        //teclado.nextLine();
 
         System.out.println("Ingrese la ram:");
         int ram= teclado.nextInt();
 
-        teclado.next();
+        teclado.nextLine();
 
         System.out.println("Ingrese el sistema operativo:");
-        String sistemaOperativo = teclado.next();
+        String sistemaOperativo = teclado.nextLine();
 
-        teclado.next();
+        //teclado.nextLine();
 
         System.out.println("Ingrese el almacenamiento:");
         int almacenamiento= teclado.nextInt();
+        teclado.nextLine();
 
         if(tipo == TipoProducto.CELULAR)
         {
-            teclado.next();
+            teclado.nextLine();
             System.out.println("Ingrese detalles de la/s camaras traseras:");
-            String camaraTrasera = teclado.next();
+            String camaraTrasera = teclado.nextLine();
 
-            teclado.next();
+            //teclado.nextLine();
 
             System.out.println("Ingrese la cantidad de camaras:");
             int cantCamaras= teclado.nextInt();
-
+            teclado.nextLine();
             System.out.println("Ingrese detalle de la camara frontal:");
-            String camaraFrontal = teclado.next();
+            String camaraFrontal = teclado.nextLine();
 
             productoNuevo = new Celular(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento, camaraTrasera, cantCamaras, camaraFrontal);
 
         } else if (tipo == TipoProducto.TELEVISOR)
         {
             System.out.println("Es samart (Ingrese SI o NO):");
-            String op = teclado.next();
+            String op = teclado.nextLine();
             boolean smart = false;
             if(op.equalsIgnoreCase("si"))
             {
                 smart = true;
             }
+            teclado.nextLine();
             System.out.println("Ingrese el numero de la opcion:\n");
             System.out.println("1) LED - 2)LCD - 3)AMOLED - 4)OLED");
             int opcion = teclado.nextInt();
@@ -533,22 +554,26 @@ public class Sistema
                     tipoPantalla = TipoPantalla.OLED;
                     break;
             }
+            //teclado.nextLine();
             productoNuevo = new Televisor(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento, smart, tipoPantalla);
 
         } else if (tipo == TipoProducto.COMPUTADORA)
         {
+
             System.out.println("Ingrese detalle de la webCam:");
-            String webCam = teclado.next();
+            String webCam = teclado.nextLine();
+
             System.out.println("Ingrese detalle de la bateria:");
-            String bateria = teclado.next();
+            String bateria = teclado.nextLine();
+
             System.out.println("Tiene lector(Ingrese SI o NO):");
-            String op = teclado.next();
+            String op = teclado.nextLine();
             boolean lector = false;
             if(op.equalsIgnoreCase("si"))
             {
                 lector = true;
             }
-            teclado.next();
+            teclado.nextLine();
             System.out.println("Ingrese el numero de la opcion:\n");
             System.out.println("1) PCDEESCRITORIO - 2)NOTEBOOK - 3)NETBOOK");
             int opcion = teclado.nextInt();
@@ -566,9 +591,10 @@ public class Sistema
                     tipoPc = TipoPc.NETBOOK;
                     break;
             }
+            teclado.nextLine();
             productoNuevo = new Computadora(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento, webCam, bateria, lector, tipoPc);
         }
-        teclado.next();
+        //teclado.nextLine();
         return productoNuevo;
     }
 

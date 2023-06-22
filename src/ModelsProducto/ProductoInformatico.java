@@ -100,7 +100,7 @@ public abstract class ProductoInformatico extends Producto
         return super.toString() +
                 "\nTamaño de pantalla: " + tamaneoDePantalla +
                 "\nResolucion " + resolucion +
-                "\nAccesorios: mostrar array" +
+                "\nAccesorios: " + accesorios +
                 "\nProcesador: " + procesador +
                 "\nMemoria RAM: " + ram +
                 "\nAlmacenamiento interno: " + almaecenamiento +

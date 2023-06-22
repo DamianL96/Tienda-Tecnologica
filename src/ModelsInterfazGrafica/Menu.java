@@ -54,7 +54,7 @@ public class Menu
         System.out.println("CARRITO -- Ingrese el numero de la opcion que desee");
         System.out.println("1- "+TipoOpciones.COMPRAR.getNombre());
         System.out.println("2- "+TipoOpciones.LIMPIARCARRITO.getNombre());
-        System.out.println("3- "+TipoOpciones.VOLVER.getNombre());
+        System.out.println("9- "+TipoOpciones.VOLVER.getNombre());
     }
 
     public static void opcionesCatalogo()
