@@ -1,9 +1,10 @@
 package ModelsFactura;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Factura implements Comparable{
+public class Factura implements Comparable, Serializable {
     private String fecha;
     private String producto; //recibe producto-marca-modelo concatenado en un string
     private String marca;
@@ -36,7 +37,7 @@ public class Factura implements Comparable{
         if (o != null){
             if(o instanceof Factura){
                 Factura aux = (Factura) o;
-                if(aux.getFecha().equals(fecha)){
+                if(aux.getFecha().equals(String.valueOf(fecha))){
                     rta= true;
                 }
             }
@@ -56,11 +57,11 @@ public class Factura implements Comparable{
     public String toString() {
         return "Factura{" +
                 "Fecha='" + fecha + '\'' +
-                ", Producto='" + producto + marca + modelo + '\'' +
+                ", Producto='" + producto + "-" + marca +"-"+ modelo + '\'' +
                 ", Precio=$" + precio +
-                ", Cliente='" + apellido +"-"+ nombre + '\''+ email +  '\'' +
+                ", Cliente='" + apellido +"-"+ nombre + "(" + email + ")" + '\'' +
                 ", Tipo De Pago='" + tipoDePago + '\'' +
-                '}';
+                '}'+ "\n" ;
     }
 
 
@@ -69,9 +70,7 @@ public class Factura implements Comparable{
     public String getFecha() {
             return fecha;
         }
-    public void setFecha(String fecha) {
-            this.fecha = fecha;
-        }
+
     public String getProducto() {
             return producto;
         }

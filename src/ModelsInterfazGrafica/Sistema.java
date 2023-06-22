@@ -137,7 +137,7 @@ public class Sistema
 
 
 
-    public int cicloVerProducto (){
+    public void cicloVerProducto (){
         Menu.verProductoMarcaModelo();
         do {
             opcion= teclado.nextInt();
@@ -158,7 +158,6 @@ public class Sistema
             }
         }while (opcion != 9);
 
-        return opcion;
     }
 
     private int cicloComentario() {

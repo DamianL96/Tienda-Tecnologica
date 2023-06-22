@@ -2,6 +2,7 @@ import ModelsEnum.TipoPantalla;
 import ModelsEnum.TipoPc;
 import ModelsEnum.TipoProducto;
 import ModelsEnum.TipoUsuario;
+import ModelsFactura.Factura;
 import ModelsGestoras.GestoraDeFacturas;
 import ModelsGestoras.GestoraDeProductos;
 import ModelsGestoras.GestoraDeUsuarios;
@@ -16,9 +17,14 @@ public class Main {
     public static void main(String[] args)
     {
 
-        GestoraDeFacturas facturas= new GestoraDeFacturas();
-        
+       /* GestoraDeFacturas facturas= new GestoraDeFacturas();
+        Factura factura1= new Factura("celular","iphone","11",15000,"Lambrecht","Damian","damianlambrecht@gmail.com","efectivo");
+        Factura factura2= new Factura("celular","samsung","s23",35000,"Lambrecht","Damian","damianlambrecht@gmail.com","debito");
 
+
+        facturas.guardarArchivo("Facturas.dat");
+        //facturas.leerArchivo("Facturas.dat");
+        System.out.println(facturas.listarFacturas());
        /* Producto celular = new Celular(TipoProducto.CELULAR, "11", "Iphone", 150000, 5, null, 0, 0, 6.1, "FULL HD", "Cable de carga", "m1", 2, "IOS 15", 128, "Camara principal de 12mpx y un gran angulas de 8 mpx", 2, "1 sensor de 8 mpx");
         Producto compu = new Computadora(TipoProducto.COMPUTADORA, "ThinkPad", "Lenovo", 450000, 2, null, 2, 0, 15.6, "FULL HD", "Cargador", "Intel I5", 8, "Windows 10", 256, "720p", "5 horas carga maxima", true, TipoPc.Notebook);
         Producto tele = new Televisor(TipoProducto.TELEVISOR, "50AU7000", "Samsung", 147000, 80, null, 1, 0, 52, "4k 120fps", "Control remoto", "no se", 2, "samsun smart", 2, true, TipoPantalla.LED);
