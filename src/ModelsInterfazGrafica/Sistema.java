@@ -287,9 +287,12 @@ public class Sistema
             cicloOpcionesAdministrador();
         }else
         {
-            Menu.menuStock();
+
             do
             {
+                System.out.println(producto.toString());
+                Menu.menuStock();
+                opcion = teclado.nextInt();
                 switch (opcion)
                 {
                     case 1://agregar Stock
