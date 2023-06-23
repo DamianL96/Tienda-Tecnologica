@@ -8,7 +8,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-
+/**
+ * Clase con datos que comparten cualquier producto que este a la venta
+ */
 public abstract class Producto implements Serializable
 {
     private TipoProducto tipoProducto;
@@ -192,12 +194,7 @@ public abstract class Producto implements Serializable
         return "\nMarca: " + marca +
                 "\nModelo " + modelo +
                 "\nPrecio: " + precio +
-                //"\nCantidad disponible: " + stock +
                 "\nDescripcion: "+ descripcion ;
-                //"\nID: " + id;
-
-               /* ", comentariosProducto=" + comentariosProducto +
-                 */
     }
 
 
@@ -213,6 +210,11 @@ public abstract class Producto implements Serializable
                 "\nPrecio: " + precio;
     }
 
+    /**
+     * Metodo que pasa los datos marca, modelo y precio del producto a un objeto json
+     * @return jsonObject
+     * @throws JSONException
+     */
 
     public JSONObject toJson() throws JSONException
     {
@@ -223,6 +225,11 @@ public abstract class Producto implements Serializable
         return jsonObject;
     }
 
+    /**
+     * Metodo que pasa los datos marca, modelo y precio del jsonObject al producto
+     * @param jsonObject
+     * @throws JSONException
+     */
     public void fromJson(JSONObject jsonObject) throws JSONException
     {
         modelo = jsonObject.getString("modelo");

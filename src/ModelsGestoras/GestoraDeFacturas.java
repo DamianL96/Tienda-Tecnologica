@@ -30,7 +30,7 @@ public class GestoraDeFacturas implements IArchivos {
 
         for (Factura f : facturas)
         {
-            listado += "\n" + f.toString();
+            listado += f.toString();
         }
         return listado;
     }

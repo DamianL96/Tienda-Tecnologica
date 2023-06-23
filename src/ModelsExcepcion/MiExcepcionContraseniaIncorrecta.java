@@ -5,6 +5,9 @@ import Interfaces.IformatFecha;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/** Excepcion que se utiliza al momento de verificar la contraseña o/y el codigo de administrador
+ * */
+
 public class MiExcepcionContraseniaIncorrecta extends Exception implements IformatFecha {
     private String fechaError;
 

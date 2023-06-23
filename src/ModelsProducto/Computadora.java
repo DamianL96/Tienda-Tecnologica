@@ -6,6 +6,7 @@ import ModelsEnum.TipoProducto;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/** Clase con los datos que tiene una computadora*/
 public class Computadora extends ProductoInformatico{
 
     private String webCam;

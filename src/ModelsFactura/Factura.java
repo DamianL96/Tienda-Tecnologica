@@ -119,8 +119,8 @@ public class Factura implements Serializable, IformatFecha {
                 "\nFecha: " + fecha +
                 "\nProductos: " + listarProductos() +
                 "\nPrecio total: $" + precio +
-                "\nCliente: " + apellido +"-"+ nombre + "-" + email + "-" +
-                "\nTipo De Pago:" + tipoDePago;
+                "\nCliente: " + apellido +" - "+ nombre + " - " + email  +
+                "\nTipo De Pago:" + tipoDePago + "\n";
     }
 
     /**

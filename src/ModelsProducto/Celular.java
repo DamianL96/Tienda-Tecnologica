@@ -2,6 +2,7 @@ package ModelsProducto;
 
 import ModelsEnum.TipoProducto;
 
+/** Clase con los datos que tiene un celular */
 public class Celular extends ProductoInformatico{
 
     private String camaraTrasera;

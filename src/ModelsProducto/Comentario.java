@@ -5,7 +5,9 @@ import ModelsUsuario.Usuario;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+/** Clase con los datos que tiene los comentarios que ingresan los usuarios
+ * Por cuestiones de tiempo, no se pudo implementar
+ * */
 public class Comentario implements Serializable
 {
     private String nombreUsuario;

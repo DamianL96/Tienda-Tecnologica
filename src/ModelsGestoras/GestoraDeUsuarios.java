@@ -52,7 +52,7 @@ public class GestoraDeUsuarios {
      * Metodo que verifica si esta bien la contraseña
      * en caso de que no, lanza una excepcion para ingresarla de nuevo
      * @param contrasenia
-     * @param
+     * @param usuario
      * @return Boolean
      */
     public boolean verificarContrasenia(String contrasenia, Usuario usuario) throws MiExcepcionContraseniaIncorrecta {

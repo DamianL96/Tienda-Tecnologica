@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 
+/**
+ * Clase con los datos que comparten todas las personas
+ */
 public abstract class Persona implements Serializable
 {
     private String nombre;

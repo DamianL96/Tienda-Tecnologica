@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+/** Excepcion que se utiliza a la hora de agregar y buscar productos
+ * */
 public class MiExcepcionProducto extends Exception implements IformatFecha
 {
     private String fechaError;
