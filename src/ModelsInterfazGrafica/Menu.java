@@ -3,6 +3,10 @@ package ModelsInterfazGrafica;
 import ModelsEnum.TipoOpciones;
 import ModelsUsuario.Usuario;
 
+/**
+ * Dentro de cada metodo se utilizan los enumeradores de TipoOpciones para armar un menu
+ * para cada ciclo del sistema.
+ */
 public class Menu
 {
     public static void muestraMenuPrincipal()

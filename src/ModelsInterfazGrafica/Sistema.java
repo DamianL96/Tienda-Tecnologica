@@ -30,6 +30,10 @@ public class Sistema
     private Usuario usuario;
     private int opcion;
 
+    /**
+     * Constructor de Sistema, inicializa el teclado, las gestoras de ususario, producto y facturas,
+     * el usuario que luego iniciara sesion y la variable de opciones
+     */
     public Sistema()
     {
         this.teclado = new Scanner(System.in);
@@ -41,7 +45,7 @@ public class Sistema
     }
 
     /**
-     * recupera los datos de los archivos
+     * Lee los datos de ususario, producto y facturas de los archivos y json
      */
     public void cargaSistema()
     {
@@ -49,9 +53,9 @@ public class Sistema
         gestoraDeProductos.leeArchivo();
         gestoraDeFacturas.leerArchivo("Facturas");
     }
-/**
- *guarda todos los datos en los archivos correspondientes
- */
+    /**
+    *Guarda todos los datos en los archivos correspondientes
+    */
     public void guardaSistema()
     {
         gestoraDeUsuarios.guardarArchivo();
@@ -60,8 +64,8 @@ public class Sistema
     }
 
     /**
-     * carga los datos necesarios para el funcionamiento del sistema,
-     * si no hay archivos se debe crear el admin
+     * Carga los datos necesarios para el funcionamiento del sistema e inicia
+     * el ciclo principal del programa
      */
     public void cicloPrograma()
     {
@@ -73,6 +77,10 @@ public class Sistema
 
     }
 
+    /**
+     * Muestra el menu principal inicio sesion - registrarse - catalogo
+     * y permite elegir una opcion
+     */
     public void cicloMenuPrincipal() {  //menu donde se dara las 3 opciones principales crear usuario - iniciar seccion - ver catalogo
 
         do{
@@ -99,6 +107,10 @@ public class Sistema
         guardaSistema();
     }
 
+    /**
+     * Verifica si quien inicia sesion es administrador o usuario para mostrar
+     * las opciones correspondientes a cada uno
+     */
     public void cicloIniciarSesion(){
         try {
             usuario = iniciarSesion();
@@ -123,6 +135,9 @@ public class Sistema
     }
 
 
+    /**
+     * Muestra el menu de catalogos posibles, y permite elegir entre catalogo completo o filtrar por tipo
+     */
     public void cicloMuestraCatalogo(){
         Menu.muestraCatalogo();
         do{
@@ -160,6 +175,11 @@ public class Sistema
         }while (opcion != 10);
     }
 
+    /**
+     * Pide ingresar la marca y el modelo del producto, lo busca en la coleccion,
+     * si no lo encuentra retorna null
+     * @return Producto
+     */
     public Producto cicloBuscarProducto()
     {
         teclado.nextLine();
@@ -173,6 +193,9 @@ public class Sistema
         return gestoraDeProductos.buscaProductoColeccion(marca,modelo);
     }
 
+    /**
+     * Muestra el producto con las opciones que puede hacer el usuario, agregar al carrito o comprar.
+     */
     public void cicloVerProducto ()
     {
         String factura=  "";
@@ -219,7 +242,11 @@ public class Sistema
     }
 
 
-
+    /**
+     * Permite entrar al menu de ver producto dentro de cualquier catalogo,
+     * recibe un entero llamado "superior" para identificar quien lo invoca
+     * @param superior
+     */
     public void cicloOpcionesDeCatalogo(int superior)
     {
         Menu.opcionesCatalogo();
@@ -250,6 +277,9 @@ public class Sistema
 
     }
 
+    /**
+     * Muestra las opciones del administrador
+     */
     public void cicloOpcionesAdministrador ()
     {
        teclado.nextLine();
@@ -287,6 +317,10 @@ public class Sistema
 
     }
 
+    /**
+     * Permite que el administrador agrege o reste stock y modifique los precios
+     * de un producto especifico buscado por marca y modelo.
+     */
     public void cicloGestionarInventario(){
 
         Producto producto= cicloBuscarProducto();
@@ -330,19 +364,38 @@ public class Sistema
         }
 
     }
+
+    /**
+     * Pide al administrador ingresar la cantidad de stock que se quiere AGREGAR
+     * y devuelve esa cantidad
+     * @return int
+     */
     public int cicloAgregarStock(){
         System.out.println("Cantidad a agregar:");
         return teclado.nextInt();
     }
+    /**
+     * Pide al administrador ingresar la cantidad de stock que se quiere RESTAR
+     * y devuelve esa cantidad
+     * @return int
+     */
     public int cicloQuitarStock(){
         System.out.println("Cantidad a quitar:");
         return teclado.nextInt();
     }
+    /**
+     * Pide al administrador ingresar el nuevo precio del producto elegido
+     * y devuelve el valor
+     * @return double
+     */
     public double cicloModificarPrecio(){
         System.out.println("Nuevo Precio:");
         return teclado.nextDouble();
     }
 
+    /**
+     * Muestra las opciones del usuario
+     */
     public void cicloOpcionesUsuario () {
         Menu.muestraOpcionesUsuario();
 
@@ -380,6 +433,12 @@ public class Sistema
         }while (opcion != 9);
     }
 
+
+    /**
+     * Muestra los productos del carrito, y permite comprarlos o limpiar el carrito,
+     * recibe un entero "superior" para saber que metodo lo invoca
+     * @param superior
+     */
     public void cicloVerCarrito(int superior){
         String factura= " ";
         System.out.println(usuario.getMiCarrito());
@@ -426,6 +485,14 @@ public class Sistema
         }while (opcion != 9);
     }
 
+
+    /**
+     * Se encarga de la gestion al momento de realizar una compra y muestra la factura.
+     * Recibe un listado de los productos que hay en el carrito
+     * Recibe un entero "superior" para saber que metodo lo invoca
+     * @param productosAComprar
+     * @param superior
+     */
     public void cicloComprar(ArrayList<Producto> productosAComprar,int superior){
         Menu.opcionesCompra();
         Factura factura= null;
@@ -449,6 +516,10 @@ public class Sistema
         }while (opcion != 10);
     }
 
+
+    /**
+     * Muestra los todos los datos del administrador
+     */
     public void cicloVerMisDatosAdmin(){
         System.out.println("\n MIS DATOS");
         System.out.println(usuario.toString());
@@ -463,11 +534,17 @@ public class Sistema
         }while (opcion != 9);
     }
 
+    /**
+     * Elimina todos los productos del carrito
+     */
     public void cicloLimpiaCarrito(){//BORRA TODO EL CARRITO
         usuario.limpiarCarrito();
         cicloVerCarrito(3);
     }
 
+    /**
+     * Muestra todos los datos del ususario, junto a su historial de compras y su carrito actual
+     */
     public void cicloVerMisDatosUsuario(){
         System.out.println("\n MIS DATOS");
         System.out.println(usuario.toString());
@@ -482,6 +559,9 @@ public class Sistema
         }while (opcion != 9);
     }
 
+    /**
+     * Permite al administrador agregar un nuevo producto al sistema
+     */
     public void cicloAgregarProducto(){
         System.out.println("\n AGREGAR PRODUCTO");
         agregarProducto();
@@ -497,6 +577,9 @@ public class Sistema
         }while (opcion != 9);
     }
 
+    /**
+     * Permite al administrador ver todas las facturas generadas por el sistema
+     */
     public void cicloVerFacturas(){
         System.out.println("\n VER FACTURAS");
         System.out.println(gestoraDeFacturas.listarFacturas());
@@ -515,8 +598,8 @@ public class Sistema
 
     /** Metodo que verifica los datos para el inicio de sesion
      * utiliza verificar contrasenia y verificar nombre de usuario
-     * @param
-     * @return
+     * @throws MiExcepcionNombreDeUsuario -ModelsExcepcion
+     * @return Usuario
      */
     public Usuario iniciarSesion() throws MiExcepcionNombreDeUsuario//de inicio de sesion
     {
@@ -550,6 +633,11 @@ public class Sistema
         return usuario;
     }
 
+    /**
+     * Verifica el nombre de usuario y devuelve true si es admin o false si es usuario comun
+     * @param  usuario
+     * @return boolean
+     */
     public boolean verificaTipoUsuario (Usuario usuario)
     {
         boolean flag=false;
@@ -570,6 +658,10 @@ public class Sistema
         return flag;
     }
 
+    /**
+     * Registra un nuevo usuario, y muestra error si el usuario se repite.
+     * @return Usuario
+     */
     public Usuario registrarUsuario()
     {
         Usuario usuario = cargaUnUsuario();
@@ -591,6 +683,10 @@ public class Sistema
         return usuario;
     }
 
+    /**
+     * Pide al usuario ingresar los datos para registrarse
+     * @return Usuario
+     */
     public Usuario cargaUnUsuario()
     {
         boolean flag = true;
@@ -626,6 +722,9 @@ public class Sistema
         return usuario;
     }
 
+    /**
+     * Pide al administrador el tipod de producto para agregar un producto al sistema
+     */
     public void agregarProducto()
     {
         System.out.println("Ingrese que tipo de producto desea cargar:");
@@ -649,6 +748,11 @@ public class Sistema
         gestoraDeProductos.agregar(producto.getTipoProducto(), producto);
     }
 
+    /**
+     * Pide al Administrador los datos para completar el cargado de un nuevo producto, y lo retorna
+     * @param tipo
+     * @return Producto
+     */
     public Producto cargaUnProducto(TipoProducto tipo)
     {
         Producto productoNuevo = null;
@@ -792,6 +896,13 @@ public class Sistema
         return productoNuevo;
     }
 
+    /**
+     *Recibe el metodo de pago, los productos del carrito, suma el precio y con los datos
+     * del ususario genera la factura y la guarda en el sistema.
+     * @param productos
+     * @param metodoDePago
+     * @return Factura
+     */
     public Factura generarFactura(ArrayList <Producto> productos, String metodoDePago)
     {
         double precio=0;
@@ -813,6 +924,11 @@ public class Sistema
         return factura;
     }
 
+
+    /**
+     * Permite elegir los productos del carrito que queremos comprar, devuelve los productos elegidos
+     * @return ArrayList<Producto>
+     */
     private ArrayList<Producto> comprarProducto ()
     {
         int seguirComprando=0;
@@ -842,7 +958,12 @@ public class Sistema
         return productosAComprar;
     }
 
-    private int cicloComentario() {
+
+    /**
+     * Permite agregar comentarios a los productos
+     * -NO LO LLEGAMOS A IMPLEMENTAR-
+     */
+    private void cicloComentario() {
         System.out.println("\n COMENTARIO");
         Menu.volver();
 
@@ -850,10 +971,6 @@ public class Sistema
             opcion=teclado.nextInt();
 
         }while (opcion != 9);
-
-        return opcion;
     }
-
-
 
 }
