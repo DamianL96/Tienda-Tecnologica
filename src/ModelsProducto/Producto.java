@@ -141,7 +141,7 @@ public abstract class Producto implements Serializable
 
     public void disminuirStock()
     {
-        stock--;
+        this.stock--;
     }
 
 

@@ -786,24 +786,22 @@ public class Sistema
 
     public Factura generarFactura(ArrayList <Producto> productos, String metodoDePago)
     {
-
         double precio=0;
-
         for (Producto p : productos)
         {
-            usuario.eliminarProductoDelCarrito(p);
             usuario.agregarAlHistorial(p);
 
             p.setVendidos();
             p.disminuirStock();
             precio=precio+p.getPrecio();
+            System.out.println("holaa");
         }
-
+        System.out.println(precio);
         Factura factura = new Factura(productos, usuario.getApellido(), usuario.getNombre(), usuario.getEmail(), metodoDePago, precio);
-        System.out.println("valor de factura"+factura.toString());
+
         gestoraDeFacturas.agregarFactura(factura);
         gestoraDeFacturas.guardarArchivo("Facturas");
-
+        usuario.limpiarCarrito();
         return factura;
     }
 
