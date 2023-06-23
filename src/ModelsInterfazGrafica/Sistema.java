@@ -47,7 +47,6 @@ public class Sistema
     {
         gestoraDeUsuarios.leeArchivo();
         gestoraDeProductos.leeArchivo();
-        gestoraDeFacturas.leerArchivo("Facturas");
     }
 /**
  *guarda todos los datos en los archivos correspondientes
@@ -87,6 +86,7 @@ public class Sistema
 
                 case 2:
                     usuario = registrarUsuario();
+                    gestoraDeUsuarios.guardarArchivo();
                     cicloOpcionesUsuario();
                     break;
 
@@ -469,7 +469,7 @@ public class Sistema
     }
 
     public void cicloVerMisDatosUsuario(){
-        System.out.println("\n MIS DATOS");
+        System.out.println("\nMIS DATOS:");
         System.out.println(usuario.toString());
         Menu.volver();
         do{
@@ -497,7 +497,9 @@ public class Sistema
         }while (opcion != 9);
     }
 
-    public void cicloVerFacturas(){
+    public void cicloVerFacturas()
+    {
+        gestoraDeFacturas.leerArchivo("Facturas");
         System.out.println("\n VER FACTURAS");
         System.out.println(gestoraDeFacturas.listarFacturas());
         Menu.volver();

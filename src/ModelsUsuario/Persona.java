@@ -75,10 +75,8 @@ public abstract class Persona implements Serializable
 
     @Override
     public String toString() {
-        return "Persona{" +
-                "nombre='" + nombre + '\'' +
-                ", apllido='" + apellido + '\'' +
-                ", codigoPostal='" + codigoPostal + '\'' +
-                '}';
+        return  "\nNombre: " + nombre +
+                "\nApllido: " + apellido +
+                "\nCodigoPostal: " + codigoPostal;
     }
 }

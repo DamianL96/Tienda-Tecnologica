@@ -3,8 +3,17 @@ package ModelsControladoraArchivos;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * clase generada para proveer dos funciones genericas
+ */
 public class ControladoraArchivo
 {
+    /**
+     * funcion utilizada para guardar datos (cualquier tipo porque es generica) en un archivo
+     * @param datos
+     * @param nombreArch
+     * @param <V>
+     */
     public static <V> void guardar(ArrayList<V> datos, String nombreArch)
     {
         FileOutputStream file = null;
@@ -47,6 +56,13 @@ public class ControladoraArchivo
         }
     }
 
+    /**
+     * funcion que lee un archivo de datos y almacena en un arraylist lo que va guardando
+     * @param datos
+     * @param nombreArch
+     * @return ArrayList
+     * @param <V>
+     */
     public static<V> ArrayList<V> leer(ArrayList<V> datos, String nombreArch)
     {
         FileInputStream file = null;

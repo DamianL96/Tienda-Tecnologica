@@ -78,9 +78,4 @@ public class GestoraDeFacturas implements IArchivos {
             System.out.println(ex.getMessage());
         }
     }
-
-
-
-
-
 }

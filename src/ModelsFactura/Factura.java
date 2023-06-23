@@ -12,6 +12,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * clase implementada para generar facturas al momento de comprar
+ * almacena las facturas en un ArrayList
+ * luego estas son almacenadas en un archivo JSON
+ */
 public class Factura implements Serializable, IformatFecha {
     private String fecha;
     private ArrayList<Producto> productos; //recibe producto-marca-modelo concatenado en un string
@@ -118,6 +123,10 @@ public class Factura implements Serializable, IformatFecha {
                 "\nTipo De Pago:" + tipoDePago;
     }
 
+    /**
+     * lista todos los productos del arrayList
+     * @return String
+     */
     public String listarProductos()
     {
         String lista = "";
@@ -130,9 +139,14 @@ public class Factura implements Serializable, IformatFecha {
     }
     public String listarProducto (Producto p)
     {
-        return  p.getTipoProducto() + " - " + p.getMarca() + " - " +  p.getModelo() + " - " + " Precio= $" + p.getPrecio();
+        return p.getMarca() + " - " +  p.getModelo() + " - " + " Precio= $" + p.getPrecio();
     }
 
+    /**
+     * metodo para formatear la fecha
+     * herada de la interface la firma
+     * @return String
+     */
     @Override
     public String fechaFormateada()
     {
@@ -141,6 +155,10 @@ public class Factura implements Serializable, IformatFecha {
         return fechaLocal.format(fechaFormateada);
     }
 
+    /**
+     * convierte todos los datos de la factura en un JsonObject
+     * @return JSONObject
+     */
     public JSONObject toJson()
     {
         JSONObject jsonObject = new JSONObject();
@@ -169,6 +187,10 @@ public class Factura implements Serializable, IformatFecha {
         return jsonObject;
     }
 
+    /**
+     * funcion que carga un objeto de tipo factura proveniente de json
+     * @param jsonObject
+     */
     public void fromJson(JSONObject jsonObject)
     {
         try {
@@ -196,10 +218,5 @@ public class Factura implements Serializable, IformatFecha {
             System.out.println(ex.getMessage());
         }
     }
-
-
-
-
-
 }
 

@@ -27,9 +27,11 @@ public class GestoraDeProductos implements Serializable{
 
 
     /*Seccion listar productos-------------------------------------------------------------------------------------*/
+
     /**
-     * Metodo que recorre el hasMap con su respectivo arrayList
-     * Devuelve en forma de string toda la informacion de todos los producos
+     *Metodo que recorre el hasMap con su respectivo arrayList
+     *Devuelve en forma de string toda la informacion de todos los producos
+     * @return String
      */
     public String infoProductos()
     {
@@ -49,6 +51,7 @@ public class GestoraDeProductos implements Serializable{
 
     /**
      * Muestra todos los productos de un mismo tipo que recibe por parametro ej. todos los CELULARES
+     * @param tipoProducto
      * @return String
      */
     public String infoProductosDeCiertoTipo(TipoProducto tipoProducto)
@@ -69,7 +72,7 @@ public class GestoraDeProductos implements Serializable{
      * sirve para verificar si esta o no esta un producto.
      * @param marca
      * @param modelo
-     * @return
+     * @return Producto
      */
     public Producto buscaProductoColeccion(String marca, String modelo)
     {
@@ -163,7 +166,6 @@ public class GestoraDeProductos implements Serializable{
      * @param modelo
      * @param precioNuevo
      */
-
     public void cambioPrecio(String marca, String modelo, double precioNuevo)
     {
         Producto p = buscaProductoColeccion(marca, modelo);
@@ -208,7 +210,8 @@ public class GestoraDeProductos implements Serializable{
 
     /**
      * Metodo que guarda todos los prouctos en un archivo
-     * */
+     *
+     */
 
     public void guardarArchivo()
     {
@@ -242,6 +245,11 @@ public class GestoraDeProductos implements Serializable{
     /**
      * Metodo utilizado para cargar el array list de comentarios
      * recibe el comentario y los datos del usuario necesarios para generar el comentario
+     * @param producto
+     * @param nombre
+     * @param email
+     * @param comentario
+     * @param puntiacion
      */
     public void agregaComentario(Producto producto,String nombre, String email, String comentario, int puntiacion)
     {

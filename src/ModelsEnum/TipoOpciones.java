@@ -1,5 +1,8 @@
 package ModelsEnum;
 
+/**
+ * enumerador utilizado para mostrar las distintas opciones en la interfece de menu
+ */
 public enum TipoOpciones {
     INICIARSESION("Iniciar sesion"), REGISTRARSE("Registrarse"), CATALOGO("Catalogo"),
     VOLVER("Volver"), CARRITO("Carrito"), MISDATOS("Mis Datos"), MODIFICARPRODUCTO("Modificar Producto"),

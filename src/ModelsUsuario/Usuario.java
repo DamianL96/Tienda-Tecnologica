@@ -210,13 +210,9 @@ public class Usuario extends Persona{
 
     @Override
     public String toString() {
-        return super.toString()+
-                "nombreDeUsuario='" + nombreDeUsuario + '\'' +
-                "\n email='" + email + '\'' +
-                "\n contrasenia='" + contrasenia + '\'' +
-                "\n tipo=" + tipo +
-                "\n miCarrito=" + listarCarrito() +
-                "\n historialDeCompra=" + historialDeCompra +
-                '}';
+        return "\nUsuario: " + super.toString()+
+                "\nNombre de usuario: " + nombreDeUsuario +
+                "\nEmail: " + email +
+                "\nContraseña: " + contrasenia;
     }
 }
