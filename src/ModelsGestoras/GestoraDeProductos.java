@@ -9,6 +9,11 @@ import ModelsProducto.Producto;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * clase utilizada para la manipulacion de de todos los productos del sistema
+ * utiliza como collection un hashMap el cual la key correponde al tipo de producto
+ * y como value un arraylist con todos los productos de ese tipo
+ */
 public class GestoraDeProductos implements Serializable{
 
 

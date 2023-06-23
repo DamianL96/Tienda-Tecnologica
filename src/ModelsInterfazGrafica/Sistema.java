@@ -18,6 +18,9 @@ import ModelsUsuario.Usuario;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Clase dedicada a manejar los menus y las funcionalidades del programa
+ */
 public class Sistema
 {
     private GestoraDeUsuarios gestoraDeUsuarios;
@@ -37,13 +40,18 @@ public class Sistema
         this.opcion = -1;
     }
 
+    /**
+     * recupera los datos de los archivos
+     */
     public void cargaSistema()
     {
         gestoraDeUsuarios.leeArchivo();
         gestoraDeProductos.leeArchivo();
-        //gestoraDeFacturas.leerArchivo("Facturas");
+        gestoraDeFacturas.leerArchivo("Facturas");
     }
-
+/**
+ *guarda todos los datos en los archivos correspondientes
+ */
     public void guardaSistema()
     {
         gestoraDeUsuarios.guardarArchivo();
@@ -51,6 +59,10 @@ public class Sistema
         //gestoraDeFacturas.guardarArchivo("Facturas");
     }
 
+    /**
+     * carga los datos necesarios para el funcionamiento del sistema,
+     * si no hay archivos se debe crear el admin
+     */
     public void cicloPrograma()
     {
         cargaSistema();
@@ -62,7 +74,6 @@ public class Sistema
     }
 
     public void cicloMenuPrincipal() {  //menu donde se dara las 3 opciones principales crear usuario - iniciar seccion - ver catalogo
-
 
         do{
             Menu.muestraMenuPrincipal();
@@ -332,8 +343,6 @@ public class Sistema
         return teclado.nextDouble();
     }
 
-
-
     public void cicloOpcionesUsuario () {
         Menu.muestraOpcionesUsuario();
 
@@ -348,10 +357,16 @@ public class Sistema
 
                 case 2:
                     //Carrito
-
-                    cicloVerCarrito(1);
+                    if(usuario.getMiCarrito().size() > 0)
+                    {
+                        cicloVerCarrito(1);
+                    }
+                    else
+                    {
+                        System.out.println("Carrito vacio");
+                        cicloOpcionesUsuario();
+                    }
                     break;
-
                 case 3:
                     //Mis Datos
                     cicloVerMisDatosUsuario();
@@ -363,8 +378,6 @@ public class Sistema
 
             }
         }while (opcion != 9);
-
-        //return opcion;
     }
 
     public void cicloVerCarrito(int superior){
@@ -779,11 +792,6 @@ public class Sistema
         return productoNuevo;
     }
 
-
-    public String comprarProducto(ArrayList <Producto> productos, String metodoDePago) throws MiExcepcionStockInsuficiente{
-        return "";
-    }
-
     public Factura generarFactura(ArrayList <Producto> productos, String metodoDePago)
     {
         double precio=0;
@@ -794,9 +802,9 @@ public class Sistema
             p.setVendidos();
             p.disminuirStock();
             precio=precio+p.getPrecio();
-            System.out.println("holaa");
+
         }
-        System.out.println(precio);
+
         Factura factura = new Factura(productos, usuario.getApellido(), usuario.getNombre(), usuario.getEmail(), metodoDePago, precio);
 
         gestoraDeFacturas.agregarFactura(factura);
