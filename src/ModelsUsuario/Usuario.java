@@ -21,10 +21,6 @@ public class Usuario extends Persona{
     private ArrayList <Producto> historialDeCompra;
     public static int ultimoId;
 
-
-
-
-
     public Usuario()
     {
         super();
@@ -55,6 +51,10 @@ public class Usuario extends Persona{
     public ArrayList<Producto> getMiCarrito() {
         return miCarrito;
     }
+
+    /**Metodo que devuelve un String con el contenido del carrito del usuario
+     * @return String
+     */
     public String listarCarrito(){
         String lista= "";
         for (int i = 0; i < miCarrito.size(); i++) {
@@ -67,6 +67,9 @@ public class Usuario extends Persona{
         return historialDeCompra;
     }
 
+    /**Metodo que devuelve un String con el contenido del historial del usuario
+     * @return String
+     */
     public String listarHistorial() {
         String lista = "";
         for (int i = 0; i < historialDeCompra.size(); i++) {
@@ -126,24 +129,10 @@ public class Usuario extends Persona{
     }
 
 
-
-
-    /**Metodo que visualiza el historial del usuario
-     *
-     */
-    public void verHistorial()
-    {
-        for(Producto p: historialDeCompra)
-        {
-            p.toString();
-        }
-    }
-
-
     /**Metodo que agrega un producto al carrito de compras
      *
      * @param producto
-     * @return
+     * @return boolean
      */
     public boolean agregarProductoAlCarrito(Producto producto)
     {
@@ -155,7 +144,7 @@ public class Usuario extends Persona{
     /**Metodo que agrega al historial de productos un producto ya comprado
      *
      * @param producto
-     * @return
+     * @return boolean
      */
     public boolean agregarAlHistorial(Producto producto)
     {
@@ -167,7 +156,7 @@ public class Usuario extends Persona{
     /** Metodo que elimina un producto del carrito
      *   se utiliza en comprar producto
      * @param producto
-     * @return
+     * @return boolean
      */
 
     public boolean eliminarProductoDelCarrito(Producto producto)
@@ -182,6 +171,9 @@ public class Usuario extends Persona{
         return true;
     }
 
+    /** Metodo que elimina todos los productos cargados en el carrito
+     *
+     */
     public void limpiarCarrito(){
         miCarrito.clear();;
     }

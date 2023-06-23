@@ -4,9 +4,10 @@ import ModelsEnum.TipoProducto;
 
 import java.util.ArrayList;
 
+/** Clase con los datos que comparten los productos informaticos
+ * */
 public abstract class ProductoInformatico extends Producto
 {
-
     private double tamaneoDePantalla; //en pulgadas
     private String resolucion;
     private String accesorios;

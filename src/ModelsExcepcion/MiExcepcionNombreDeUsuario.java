@@ -4,7 +4,8 @@ import Interfaces.IformatFecha;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+/**Excepcion que se utiliza al momento de verificar si el usuario ingresado no es correcto
+ * **/
 public class MiExcepcionNombreDeUsuario extends Exception implements IformatFecha {
     private String fechaError;
 

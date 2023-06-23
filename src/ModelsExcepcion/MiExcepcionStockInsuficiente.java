@@ -6,6 +6,8 @@ import ModelsProducto.Producto;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**Excepcion que notifica que el stock de x producto no es suficiente para realizar la compra
+ * */
 public class MiExcepcionStockInsuficiente extends Exception implements IformatFecha {
     private Producto producto;
     private String fechaError;

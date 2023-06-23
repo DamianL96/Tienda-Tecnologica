@@ -5,7 +5,7 @@ import ModelsEnum.TipoProducto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/** Clase con los datos que tiene un televisor */
 public class Televisor extends ProductoInformatico{
 
     private boolean smart;
