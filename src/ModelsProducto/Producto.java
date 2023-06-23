@@ -201,6 +201,12 @@ public abstract class Producto implements Serializable
     }
 
 
+    public String toStringAdmin(){
+        return "\nMarca: " + marca +
+                "\nModelo " + modelo +
+                "\nPrecio: " + precio +
+                "\nEn Stock: " + stock;
+    }
     public String toStringCatalogo() {
         return "\nMarca: " + marca +
                 "\nModelo " + modelo +

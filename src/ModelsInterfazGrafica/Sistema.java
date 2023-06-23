@@ -41,12 +41,14 @@ public class Sistema
     {
         gestoraDeUsuarios.leeArchivo();
         gestoraDeProductos.leeArchivo();
+        //gestoraDeFacturas.leerArchivo("Facturas");
     }
 
     public void guardaSistema()
     {
         gestoraDeUsuarios.guardarArchivo();
         gestoraDeProductos.guardarArchivo();
+        //gestoraDeFacturas.guardarArchivo("Facturas");
     }
 
     public void cicloPrograma()
@@ -192,6 +194,7 @@ public class Sistema
                         if(usuario ==null){
                             cicloIniciarSesion();
                         }
+                        usuario.agregarProductoAlCarrito(producto);
                         cicloComprar(usuario.getMiCarrito(),1);
                         System.out.println(factura);
                         cicloOpcionesUsuario();
@@ -285,23 +288,26 @@ public class Sistema
 
             do
             {
-                System.out.println(producto.toString());
+                System.out.println(producto.toStringAdmin());
                 Menu.menuStock();
                 opcion = teclado.nextInt();
                 switch (opcion)
                 {
                     case 1://agregar Stock
                         producto.agregarStock(cicloAgregarStock());
+                        System.out.println(producto.toStringAdmin());
                         cicloOpcionesAdministrador();
                         break;
 
                     case 2://quitar Stock
                         producto.quitarStock(cicloQuitarStock());
+                        System.out.println(producto.toStringAdmin());
                         cicloOpcionesAdministrador();
                         break;
 
                     case 3://moificar precio
                         producto.setPrecio(cicloModificarPrecio());
+                        System.out.println(producto.toStringAdmin());
                         cicloOpcionesAdministrador();
                         break;
 
@@ -325,6 +331,9 @@ public class Sistema
         System.out.println("Nuevo Precio:");
         return teclado.nextDouble();
     }
+
+
+
     public void cicloOpcionesUsuario () {
         Menu.muestraOpcionesUsuario();
 
@@ -372,9 +381,9 @@ public class Sistema
                     System.out.println(factura);
                     cicloOpcionesUsuario();
 
-                    ArrayList<Producto> productosAComprar=comprarProducto();
+                    ArrayList<Producto> productosAComprar = new ArrayList<>(comprarProducto());
                     cicloComprar(productosAComprar,1);
-                    System.out.println(factura.toString());
+                    System.out.println(factura);
 
                     break;
 
@@ -777,9 +786,8 @@ public class Sistema
 
     public Factura generarFactura(ArrayList <Producto> productos, String metodoDePago)
     {
-        Factura factura=null;
+
         double precio=0;
-        Producto producto=null;
 
         for (Producto p : productos)
         {
@@ -790,7 +798,9 @@ public class Sistema
             p.disminuirStock();
             precio=precio+p.getPrecio();
         }
-        factura=new Factura(productos, usuario.getApellido(), usuario.getNombre(), usuario.getEmail(), metodoDePago, precio);
+
+        Factura factura = new Factura(productos, usuario.getApellido(), usuario.getNombre(), usuario.getEmail(), metodoDePago, precio);
+        System.out.println("valor de factura"+factura.toString());
         gestoraDeFacturas.agregarFactura(factura);
         gestoraDeFacturas.guardarArchivo("Facturas");
 
