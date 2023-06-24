@@ -756,7 +756,6 @@ public class Sistema {
     */
     public Producto cargaUnProducto (TipoProducto tipo)
     {
-        Producto productoNuevo = null;
         System.out.println("Ingrese la marca:");
         String marca = teclado.nextLine();
 
@@ -800,21 +799,39 @@ public class Sistema {
         int almacenamiento = teclado.nextInt();
         teclado.nextLine();
 
+        Producto productoFinal = null;
         if (tipo == TipoProducto.CELULAR)
         {
-            productoNuevo= ingresarCelular(tipo, modelo, marca, precio, stock, descripcion,tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento);
+            productoFinal= ingresarCelular(tipo, modelo, marca, precio, stock, descripcion,tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento);
         }
         else if (tipo == TipoProducto.TELEVISOR)
         {
-            productoNuevo = ingresarTelevisor(tipo, modelo, marca, precio, stock, descripcion,tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento);
+            productoFinal = ingresarTelevisor(tipo, modelo, marca, precio, stock, descripcion,tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento);
         }
         else if (tipo == TipoProducto.COMPUTADORA)
         {
-            productoNuevo = ingresarComputadora(tipo, modelo, marca, precio, stock, descripcion, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento);
+            productoFinal = ingresarComputadora(tipo, modelo, marca, precio, stock, descripcion, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento);
         }
-        return productoNuevo;
+        return productoFinal;
     }
 
+    /**
+     * Pide los atributos necesarios para cargar un celular y devuelve el producto creado
+     * @param tipo
+     * @param modelo
+     * @param marca
+     * @param precio
+     * @param stock
+     * @param descripcion
+     * @param tamaneoPantalla
+     * @param resolucion
+     * @param accesorios
+     * @param procesador
+     * @param ram
+     * @param sistemaOperativo
+     * @param almacenamiento
+     * @return Producto
+     */
     public Producto ingresarCelular(TipoProducto tipo,String modelo,String marca,double precio,int stock,String descripcion,double tamaneoPantalla,String resolucion,String accesorios,String procesador,int ram,String sistemaOperativo,int almacenamiento){
 
         teclado.nextLine();
@@ -830,6 +847,23 @@ public class Sistema {
         return new Celular(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento, camaraTrasera, cantCamaras, camaraFrontal);
     }
 
+    /**
+     * Pide los atributos necesarios para cargar un Televisor y devuelve el producto creado
+     * @param tipo
+     * @param modelo
+     * @param marca
+     * @param precio
+     * @param stock
+     * @param descripcion
+     * @param tamaneoPantalla
+     * @param resolucion
+     * @param accesorios
+     * @param procesador
+     * @param ram
+     * @param sistemaOperativo
+     * @param almacenamiento
+     * @return Producto
+     */
     public Producto ingresarTelevisor(TipoProducto tipo,String modelo,String marca,double precio,int stock,String descripcion,double tamaneoPantalla,String resolucion,String accesorios,String procesador,int ram,String sistemaOperativo,int almacenamiento){
 
         System.out.println("Es samart (Ingrese SI o NO):");
@@ -863,6 +897,23 @@ public class Sistema {
         return new Televisor(tipo, modelo, marca, precio, stock, descripcion, 0, 0, tamaneoPantalla, resolucion, accesorios, procesador, ram, sistemaOperativo, almacenamiento,smart,tipoPantalla);
     }
 
+    /**
+     * Pide los atributos necesarios para cargar una computadora y devuelve el producto creado
+     * @param tipo
+     * @param modelo
+     * @param marca
+     * @param precio
+     * @param stock
+     * @param descripcion
+     * @param tamaneoPantalla
+     * @param resolucion
+     * @param accesorios
+     * @param procesador
+     * @param ram
+     * @param sistemaOperativo
+     * @param almacenamiento
+     * @return Producto
+     */
     public Producto ingresarComputadora(TipoProducto tipo,String modelo,String marca,double precio,int stock,String descripcion,double tamaneoPantalla,String resolucion,String accesorios,String procesador,int ram,String sistemaOperativo,int almacenamiento)
     {
         System.out.println("Ingrese detalle de la webCam:");
